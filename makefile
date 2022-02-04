@@ -1,5 +1,8 @@
-main: main.cpp PathfinderInterface.h
-	g++ -o main main.cpp
+maze: main.o Pathfinder.o
+	g++ -o maze main.o Pathfinder.o
 
-maze: maze.cpp maze.h PathfinderInterface.h
-	g++ -o maze.o maze.cpp
+main: main.cpp
+	g++ -o main.o main.cpp
+	
+pathfinder: Pathfinder.cpp Pathfinder.h PathfinderInterface.h
+	g++ -o Pathfinder.o Pathfinder.cpp
