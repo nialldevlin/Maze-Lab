@@ -1,10 +1,10 @@
-#include "maze.h"
-#include <stdlib.h>     /* srand, rand */
-#include <time.h>       /* time */
+#include "Pathfinder.h"
+#include <stdlib.h>
+#include <time.h>
 #include <fstream>
 #include <vector>
 
-Maze::Maze() {
+Pathfinder::Pathfinder() {
 	for (auto &i : maze) {
 		for (auto &j : i) {
 			for (auto &k : j) {
@@ -15,7 +15,7 @@ Maze::Maze() {
 	srand(time(null));
 }
 
-string Maze::toString() const {
+string Pathfinder::toString() const {
 	string outstr = "";
 	for (auto i : maze) {
 		for (auto j : i) {
@@ -30,7 +30,7 @@ string Maze::toString() const {
 	return outstr;
 }
 
-void Maze::createRandomMaze() {
+void Pathfinder::createRandomMaze() {
 	for (auto &i : maze) {
 		for (auto &j : i) {
 			for (auto &k : j) {
@@ -43,7 +43,7 @@ void Maze::createRandomMaze() {
 	k[num_grids - 1][grid_size - 1][grid_size - 1] = 1;
 }
 
-bool Maze::importMaze(string file_name) {
+bool Pathfinder::importMaze(string file_name) {
 	ifstream ifs;
 	ifs.open(file_name);
 	if (!ifs.is_open()) {
@@ -79,4 +79,8 @@ bool Maze::importMaze(string file_name) {
 	}
 	return True;
 }
-vector<string> Maze::solveMaze();
+
+vector<string> Pathfinder::solveMaze() {
+	vector<string> solved;
+	return solved;
+}

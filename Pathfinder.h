@@ -1,16 +1,16 @@
 #include "PathfinderInterface.h"
 
-class Maze: public PathfinderInterface {
+class Pathfinder: public PathfinderInterface {
 private:
-	short num_grids = 5;
-	short grid_size = 5;
+	const static short num_grids = 5;
+	const static short grid_size = 5;
 	bool maze[num_grids][grid_size][grid_size];
 	bool maze_gen = false;
 public:
-	Maze();
-	virtual ~Maze();
+	Pathfinder();
+	~Pathfinder(){}
 	string toString() const;
 	void createRandomMaze();
 	bool importMaze(string file_name);
 	vector<string> solveMaze();
-}
+};
