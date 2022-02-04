@@ -5,22 +5,22 @@
 #include <vector>
 
 Pathfinder::Pathfinder() {
-	for (auto &i : maze) {
-		for (auto &j : i) {
-			for (auto &k : j) {
-				k = 1;
+	for (int i = 0; i < num_grids; i++) {
+		for (int j = 0; j < grid_size; j++) {
+			for (int k = 0; k < grid_size; k++) {
+				maze[i][j][k] = 1;
 			}
 		}
 	}
-	srand(time(null));
+	srand(time(NULL));
 }
 
 string Pathfinder::toString() const {
 	string outstr = "";
-	for (auto i : maze) {
-		for (auto j : i) {
-			for (auto k : j) {
-				outstr += k;
+	for (int i = 0; i < num_grids; i++) {
+		for (int j = 0; j < grid_size; j++) {
+			for (int k = 0; k < grid_size; k++) {
+				outstr += maze[i][j][k];
 				outstr += " ";
 			}
 			outstr += "\n";
@@ -31,16 +31,16 @@ string Pathfinder::toString() const {
 }
 
 void Pathfinder::createRandomMaze() {
-	for (auto &i : maze) {
-		for (auto &j : i) {
-			for (auto &k : j) {
+	for (int i = 0; i < num_grids; i++) {
+		for (int j = 0; j < grid_size; j++) {
+			for (int k = 0; k < grid_size; k++) {
 				int random = rand();
-				k = random % 2;
+				maze[i][j][k] = random % 2;
 			}
 		}
 	}
-	k[0][0][0] = 1;
-	k[num_grids - 1][grid_size - 1][grid_size - 1] = 1;
+	maze[0][0][0] = 1;
+	maze[num_grids - 1][grid_size - 1][grid_size - 1] = 1;
 }
 
 bool Pathfinder::importMaze(string file_name) {
@@ -77,7 +77,7 @@ bool Pathfinder::importMaze(string file_name) {
 			}
 		}
 	}
-	return True;
+	return true;
 }
 
 vector<string> Pathfinder::solveMaze() {
