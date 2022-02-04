@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <fstream>
-#include <stringstream>
+#include <sstream>
 #include <vector>
 
 Pathfinder::Pathfinder() {
