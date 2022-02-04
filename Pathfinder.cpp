@@ -62,7 +62,7 @@ bool Pathfinder::importMaze(string file_name) {
 			if (val)
 				zeroes++;
 			else
-				ones++
+				ones++;
 		}
 	}
 	if (vals.size() < num_grids * grid_size * grid_size) {
