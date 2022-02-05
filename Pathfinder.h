@@ -30,7 +30,7 @@ private:
 	int h(Node n);
 	int f(Node n);
 
-	void expandNode(bool (*direction)(Coord));
+	void expandNode(Node n, bool (*direction)(Coord));
 	vector<string> findPath(Node current);
 
 public:

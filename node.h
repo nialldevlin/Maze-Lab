@@ -17,7 +17,7 @@ public:
 	Node(Coord pos, Node parent);
 	~Node();
 
-	Node * getParent();
+	Node getParent();
 	void setParent(Node parent);
 
 	int getg();
