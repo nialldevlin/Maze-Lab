@@ -87,7 +87,7 @@ bool Pathfinder::importMaze(string file_name) {
 
 vector<string> Pathfinder::solveMaze() {
 	vector<int> final_pos{num_grids - 1, grid_size - 1, grid_size - 1};
-	cout << *maze[curr_pos->getz() - 1][curr_pos->gety()][curr_pos->getx()][0] << endl;
+	cout << (*maze)[curr_pos->getz() - 1][curr_pos->gety()][curr_pos->getx()][0] << endl;
 	return solved;
 }
 
