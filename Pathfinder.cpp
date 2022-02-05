@@ -83,5 +83,58 @@ bool Pathfinder::importMaze(string file_name) {
 
 vector<string> Pathfinder::solveMaze() {
 	vector<string> solved;
+	int pos = {0,0,0};
+	cout << pos[0] << " " << pos[1] << " "  << pos[2] << endl;
+	up(pos);
+	cout << pos[0] << " " << pos[1] << " "  << pos[2] << endl;
 	return solved;
+}
+
+//Private functions
+bool Pathfinder::up(int *pos) {
+	if ( pos[0] - 1 >= 0 && pos[0] - 1 < num_grids && maze[pos[0] - 1][pos[1]][pos[2]] == 1) {
+		pos[0]--;
+		return true;
+	}
+	return false;
+}
+
+bool Pathfinder::down(int *pos) {
+	if ( pos[0] + 1 >= 0 && pos[0] + 1 < num_grids && maze[pos[0] + 1][pos[1]][pos[2]] == 1) {
+		pos[0]++;
+		return true;
+	}
+	return false;
+}
+
+bool Pathfinder::forward(int *pos) {
+	if ( pos[1] - 1 >= 0 && pos[1] - 1 < num_grids && maze[pos[0]][pos[1] - 1][pos[2]] == 1) {
+		pos[1]--;
+		return true;
+	}
+	return false;
+}
+
+bool Pathfinder::backward(int *pos) {
+	if ( pos[1] + 1 >= 0 && pos[1] + 1 < num_grids && maze[pos[0]][pos[1] + 1][pos[2]] == 1) {
+		pos[1]++;
+		return true;
+	}
+	return false;
+}
+
+bool Pathfinder::left(int *pos) {
+	if ( pos[2] - 1 >= 0 && pos[2] - 1 < num_grids && maze[pos[0]][pos[1]][pos[2] - 1] == 1) {
+		pos[2]--;
+		return true;
+	}
+	return false;
+}
+
+bool Pathfinder::right(int *pos) {
+	if ( pos[2] + 1 >= 0 && pos[2] + 1 < num_grids && maze[pos[0]][pos[1]][pos[2] + 1] == 1) {
+		pos[2]++;
+		return true;
+	}
+	return false;
 }
