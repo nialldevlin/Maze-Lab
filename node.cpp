@@ -17,6 +17,7 @@ Node::Node(Coord pos, Node * parent) {
 
 Node::~Node(){
 	delete position;
+	delete parent_node
 }
 
 Node * Node::getParent() {
@@ -52,9 +53,9 @@ void Node::setFCost(int f) {
 }
 
 Coord Node::getPos() {
-	return position;
+	return *position;
 }
 
 void Node::setPos(Coord pos) {
-	position = pos;
+	*position = pos;
 }
