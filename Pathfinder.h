@@ -1,3 +1,6 @@
+#ifndef PATHFINDER_H
+#define PATHFINDER_H
+
 #include "PathfinderInterface.h"
 #include "coord.h"
 #include "node.h"
@@ -27,3 +30,5 @@ public:
 	bool importMaze(string file_name);
 	vector<string> solveMaze();
 };
+
+#endif

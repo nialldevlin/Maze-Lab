@@ -1,3 +1,6 @@
+#ifndef COORD_H
+#define COORD_H
+
 class Coord {
 private:
 	int x;
@@ -18,3 +21,5 @@ public:
 
 	int set(int x, int y, int z);
 };
+
+#endif

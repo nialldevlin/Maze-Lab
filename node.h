@@ -1,3 +1,6 @@
+#ifndef NODE_H
+#define NODE_H
+
 #include "coord.h"
 
 class Node{
@@ -28,3 +31,5 @@ public:
 	void setPos(Coord pos);
 
 };
+
+#endif
