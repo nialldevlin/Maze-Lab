@@ -5,6 +5,7 @@
 #include "coord.h"
 #include "node.h"
 #include <vector>
+#include <set>
 
 using namespace std;
 
@@ -13,15 +14,25 @@ private:
 	const static short num_grids = 5;
 	const static short grid_size = 5;
 	vector<vector<vector<bool>>> * maze;
-	vector<string> solved;
+	vector<Coord> solved;
+	set<Node visited; //Seen nodes
+	set<Node> to_visit; //Nodes to visit
 	Coord * curr_pos;
-	/*
+	
 	bool up(Coord * pos);
 	bool down(Coord * pos);
 	bool forward(Coord * pos);
 	bool backward(Coord * pos);
 	bool left(Coord * pos);
-	bool right(Coord * pos);*/
+	bool right(Coord * pos);
+
+	int g(Node n);
+	int h(Node n);
+	int f(Node n);
+
+	void expandNode(bool (*direction)(Coord));
+	vector<string> findPath(Node current);
+
 public:
 	Pathfinder();
 	~Pathfinder();

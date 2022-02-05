@@ -88,7 +88,30 @@ void Coord::incx() {
 void Coord::incy() {
 	y++;
 }
+
 void Coord::incz() {
 	z++;
 }
 
+float Coord::getDist(Coord other) {
+	int xdiff = x - other.getx();
+	int ydiff = y - other.gety();
+	int zdiff = z - other.getz();
+	return sqrt(xdiff * xdiff + ydiff * ydiff + zdiff * zdiff);
+}
+
+string Coord::str() {
+	return "(" + x + ", " + y + ", " + z + ")";
+}
+
+bool operator== (const Coord& c1, const Coord& c2) {
+    return (c1.x == c2.x &&
+            c1.y == c2.y &&
+            c1.z == c2.z);
+}
+
+bool operator!= (const Coord& c1, const Coord& c2) {
+    return (c1.x != c2.x ||
+            c1.y != c2.y ||
+            c1.z != c2.z);
+}

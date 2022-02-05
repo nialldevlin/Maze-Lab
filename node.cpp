@@ -2,17 +2,26 @@
 
 Node::Node() {
 	position = new Coord();
-	cost_g = 0;
-	cost_f = 0;
-	cost_h = 0;
+	parent_node = NULL;
+	cost_g = 0.0;
+	cost_h = 0.0;
+	cost_f = 0.0;
 }
 
-Node::Node(Coord pos, Node * parent) {
+Node::Node(Coord pos) {
 	*position = pos;
-	parent_node = parent;
-	cost_g = 0;
-	cost_f = 0;
-	cost_h = 0;
+	parent_node = NULL;
+	cost_g = 0.0;
+	cost_f = 0.0;
+	cost_h = 0.0;
+}
+
+Node::Node(Coord pos, Node parent) {
+	*position = pos;
+	parent_node = &parent;
+	cost_g = 0.0;
+	cost_f = 0.0;
+	cost_h = 0.0;
 }
 
 Node::~Node(){
@@ -21,34 +30,34 @@ Node::~Node(){
 }
 
 Node * Node::getParent() {
-	return parent_node;
+	return *parent_node;
 }
 
-void Node::setParent(Node * parent) {
-	parent_node = parent;
+void Node::setParent(Node parent) {
+	parent_node = &parent;
 }
 
-int Node::getGCost() {
+int Node::getg() {
 	return cost_g;
 }
 
-int Node::getHCost() {
+int Node::geth() {
 	return cost_h;
 }
 
-int Node::getFCost() {
+int Node::getf() {
 	return cost_f;
 }
 
-void Node::setGCost(int g) {
+void Node::setg(int g) {
 	cost_g = g;
 }
 
-void Node::setHCost(int h) {
+void Node::seth(int h) {
 	cost_h = h;
 }
 
-void Node::setFCost(int f) {
+void Node::setf(int f) {
 	cost_f = f;
 }
 

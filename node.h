@@ -7,30 +7,29 @@ class Node{
 private:
 	Node * parent_node;
 	Coord * position;
-	int cost_g;
-	int cost_h;
-	int cost_f;
-
+	float cost_g;
+	float cost_h;
+	float cost_f;
 
 public:
 	Node();
-	Node(Coord pos, Node * parent);
+	Node(Coord pos);
+	Node(Coord pos, Node parent);
 	~Node();
 
 	Node * getParent();
-	void setParent(Node * parent);
+	void setParent(Node parent);
 
-	int getGCost();
-	int getHCost();
-	int getFCost();
+	int getg();
+	int geth();
+	int getf();
 
-	void setGCost(int g);
-	void setHCost(int h);
-	void setFCost(int f);
+	void setg(int g);
+	void seth(int h);
+	void setf(int f);
 
 	Coord getPos();
 	void setPos(Coord pos);
-
 };
 
 #endif
