@@ -36,11 +36,11 @@ string Pathfinder::toString() const {
 }
 
 void Pathfinder::createRandomMaze() {
-	for (auto &grid : maze) {
+	for (auto &grid : *maze) {
 		for (auto &line : grid) {
 			for (auto &i : line) {
 				int random = rand();
-				*i = random % 2;
+				i = random % 2;
 			}
 		}
 	}
@@ -74,10 +74,10 @@ bool Pathfinder::importMaze(string file_name) {
 		return false;
 	}
 	int index = 0;
-	for (int i = 0; i < num_grids; i++) {
-		for (int j = 0; j < grid_size; j++) {
-			for (int k = 0; k < grid_size; k++) {
-				maze[i][j][k] == vals[index];
+	for (auto &grid : *maze) {
+		for (auto &line : grid) {
+			for (auto &i : line) {
+				i = vals[index];
 				index++;
 			}
 		}
@@ -95,48 +95,48 @@ vector<string> Pathfinder::solveMaze() {
 
 //Private functions
 bool Pathfinder::up(Coord *pos) {
-	if ( *pos->getz() - 1 >= 0 && maze[*pos->getz() - 1][pos[1]][pos[2]] == 1) {
-		*pos->decz;
+	if (*pos->getz() - 1 >= 0 && maze[*pos->getz() - 1][*pos->gety()][*pos->getx()] == 1) {
+		*pos->decz();
 		return true;
 	}
 	return false;
 }
 
 bool Pathfinder::down(Coord *pos) {
-	if ( pos[0] + 1 >= 0 && pos[0] + 1 < num_grids && maze[pos[0] + 1][pos[1]][pos[2]] == 1) {
-		pos[0]++;
+	if (*pos->getz() + 1 < num_grids && maze[*pos->getz() + 1][*pos->gety()][*pos->getx()] == 1) {
+		*pos->incz();
 		return true;
 	}
 	return false;
 }
 
 bool Pathfinder::forward(Coord *pos) {
-	if ( pos[1] - 1 >= 0 && pos[1] - 1 < num_grids && maze[pos[0]][pos[1] - 1][pos[2]] == 1) {
-		pos[1]--;
+	if (*pos->gety() - 1 >= 0 && maze[*pos->getz()][*pos->gety() - 1][*pos->getx()] == 1) {
+		*pos->decy();
 		return true;
 	}
 	return false;
 }
 
 bool Pathfinder::backward(Coord *pos) {
-	if ( pos[1] + 1 >= 0 && pos[1] + 1 < num_grids && maze[pos[0]][pos[1] + 1][pos[2]] == 1) {
-		pos[1]++;
+	if (*pos->gety() + 1 < grid_size && maze[*pos->getz()][*pos->gety() + 1][*pos->getx()] == 1) {
+		*pos->incy();
 		return true;
 	}
 	return false;
 }
 
 bool Pathfinder::left(int *Coord) {
-	if ( pos[2] - 1 >= 0 && pos[2] - 1 < num_grids && maze[pos[0]][pos[1]][pos[2] - 1] == 1) {
-		pos[2]--;
+	if (*pos->getx() - 1 >= 0 && maze[*pos->getz()][*pos->gety()][*pos->getx() - 1] == 1) {
+		*pos->decx();
 		return true;
 	}
 	return false;
 }
 
 bool Pathfinder::right(int *Coord) {
-	if ( pos[2] + 1 >= 0 && pos[2] + 1 < num_grids && maze[pos[0]][pos[1]][pos[2] + 1] == 1) {
-		pos[2]++;
+	if (*pos->getx() + 1 < 5 && maze[*pos->getz()][*pos->gety()][*pos->getx() + 1] == 1) {
+		*pos->incx();
 		return true;
 	}
 	return false;
