@@ -19,10 +19,10 @@ Pathfinder::~Pathfinder() {
 
 string Pathfinder::toString() const {
 	string outstr = "";
-	for (int i = 0; i < num_grids; i++) {
-		for (int j = 0; j < grid_size; j++) {
-			for (int k = 0; k < grid_size; k++) {
-				outstr += maze[i][j][k];
+	for (auto grid : maze) {
+		for (auto line : grid) {
+			for (auto i : line) {
+				outstr += i;
 				outstr += " ";
 			}
 			outstr += "\n";
@@ -33,11 +33,11 @@ string Pathfinder::toString() const {
 }
 
 void Pathfinder::createRandomMaze() {
-	for (int i = 0; i < num_grids; i++) {
-		for (int j = 0; j < grid_size; j++) {
-			for (int k = 0; k < grid_size; k++) {
+	for (auto &grid : maze) {
+		for (auto &line : grid) {
+			for (auto &i : line) {
 				int random = rand();
-				maze[i][j][k] = random % 2;
+				i = random % 2;
 			}
 		}
 	}

@@ -17,4 +17,4 @@ public:
 	int setz();
 
 	int set(int x, int y, int z);
-}
+};

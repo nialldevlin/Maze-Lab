@@ -27,4 +27,4 @@ public:
 	Coord getPos();
 	void setPos(Coord pos);
 
-}
+};
