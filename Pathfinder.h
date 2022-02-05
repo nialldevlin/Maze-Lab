@@ -1,11 +1,15 @@
 #include "PathfinderInterface.h"
+#include <vector>
+
+using namespace std;
 
 class Pathfinder: public PathfinderInterface {
 private:
 	const static short num_grids = 5;
 	const static short grid_size = 5;
-	bool maze[num_grids][grid_size][grid_size];
-	bool maze_gen = false;
+	vectorvector<vector<bool>>> maze;
+	vector<string> solved;
+	vector<int> curr_pos(3, 0);
 
 	bool up(int *pos);
 	bool down(int *pos);
@@ -15,7 +19,7 @@ private:
 	bool right(int *pos);
 public:
 	Pathfinder();
-	~Pathfinder(){}
+	~Pathfinder();
 	string toString() const;
 	void createRandomMaze();
 	bool importMaze(string file_name);

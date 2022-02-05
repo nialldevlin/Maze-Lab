@@ -5,15 +5,15 @@
 #include <sstream>
 #include <vector>
 
+using namespace std;
+
 Pathfinder::Pathfinder() {
-	for (int i = 0; i < num_grids; i++) {
-		for (int j = 0; j < grid_size; j++) {
-			for (int k = 0; k < grid_size; k++) {
-				maze[i][j][k] = 1;
-			}
-		}
-	}
+	maze = new vector(num_grids, vector<std::vector<bool>> (grid_size, vector<bool>(grid_size, 1)));
 	srand(time(NULL));
+}
+
+Pathfinder::~Pathfinder() {
+	delete maze;
 }
 
 string Pathfinder::toString() const {
@@ -82,12 +82,11 @@ bool Pathfinder::importMaze(string file_name) {
 }
 
 vector<string> Pathfinder::solveMaze() {
-	vector<string> solved;
-	int pos[3] = { 0 };
-	cout << pos[0] << " " << pos[1] << " "  << pos[2] << endl;
-	cout << down(pos) << endl;
-	cout << pos[0] << " " << pos[1] << " "  << pos[2] << endl;
-	return solved;
+	vector<int> final_pos{num_grids - 1, grid_size - 1, grid_size - 1};
+	
+	if (curr_pos == final_pos) {
+		return solved;
+	}
 }
 
 //Private functions
