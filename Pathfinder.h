@@ -9,7 +9,7 @@ class Pathfinder: public PathfinderInterface {
 private:
 	const static short num_grids = 5;
 	const static short grid_size = 5;
-	vectorvector<vector<bool>>> maze;
+	vectorvector<vector<bool>>> maze(num_grids, vector<std::vector<bool>> (grid_size, vector<bool>(grid_size, 1)));
 	vector<string> solved;
 	Coord curr_pos;
 

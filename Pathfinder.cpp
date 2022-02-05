@@ -1,4 +1,6 @@
 #include "Pathfinder.h"
+#include "coords.h"
+#include "node.h"
 #include <stdlib.h>
 #include <time.h>
 #include <fstream>
@@ -8,7 +10,6 @@
 using namespace std;
 
 Pathfinder::Pathfinder() {
-	maze = new vector(num_grids, vector<std::vector<bool>> (grid_size, vector<bool>(grid_size, 1)));
 	srand(time(NULL));
 }
 
@@ -83,7 +84,7 @@ bool Pathfinder::importMaze(string file_name) {
 
 vector<string> Pathfinder::solveMaze() {
 	vector<int> final_pos{num_grids - 1, grid_size - 1, grid_size - 1};
-	
+
 	if (curr_pos == final_pos) {
 		return solved;
 	}
