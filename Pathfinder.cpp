@@ -94,49 +94,49 @@ vector<string> Pathfinder::solveMaze() {
 }
 
 //Private functions
-bool Pathfinder::up(Coord *pos) {
-	if (*pos->getz() - 1 >= 0 && maze[*pos->getz() - 1][*pos->gety()][*pos->getx()] == 1) {
-		*pos->decz();
+bool Pathfinder::up(Coord * pos) {
+	if (pos->getz() - 1 >= 0 && maze[pos->getz() - 1][pos->gety()][pos->getx()] == 1) {
+		pos->decz();
 		return true;
 	}
 	return false;
 }
 
-bool Pathfinder::down(Coord *pos) {
-	if (*pos->getz() + 1 < num_grids && maze[*pos->getz() + 1][*pos->gety()][*pos->getx()] == 1) {
-		*pos->incz();
+bool Pathfinder::down(Coord * pos) {
+	if (pos->getz() + 1 < num_grids && maze[pos->getz() + 1][pos->gety()][pos->getx()] == 1) {
+		pos->incz();
 		return true;
 	}
 	return false;
 }
 
-bool Pathfinder::forward(Coord *pos) {
-	if (*pos->gety() - 1 >= 0 && maze[*pos->getz()][*pos->gety() - 1][*pos->getx()] == 1) {
-		*pos->decy();
+bool Pathfinder::forward(Coord * pos) {
+	if (pos->gety() - 1 >= 0 && maze[pos->getz()][pos->gety() - 1][pos->getx()] == 1) {
+		pos->decy();
 		return true;
 	}
 	return false;
 }
 
-bool Pathfinder::backward(Coord *pos) {
-	if (*pos->gety() + 1 < grid_size && maze[*pos->getz()][*pos->gety() + 1][*pos->getx()] == 1) {
-		*pos->incy();
+bool Pathfinder::backward(Coord * pos) {
+	if (pos->gety() + 1 < grid_size && maze[pos->getz()][pos->gety() + 1][pos->getx()] == 1) {
+		pos->incy();
 		return true;
 	}
 	return false;
 }
 
-bool Pathfinder::left(int *Coord) {
-	if (*pos->getx() - 1 >= 0 && maze[*pos->getz()][*pos->gety()][*pos->getx() - 1] == 1) {
-		*pos->decx();
+bool Pathfinder::left(Coord * pos) {
+	if (pos->getx() - 1 >= 0 && maze[pos->getz()][pos->gety()][pos->getx() - 1] == 1) {
+		pos->decx();
 		return true;
 	}
 	return false;
 }
 
-bool Pathfinder::right(int *Coord) {
-	if (*pos->getx() + 1 < 5 && maze[*pos->getz()][*pos->gety()][*pos->getx() + 1] == 1) {
-		*pos->incx();
+bool Pathfinder::right(Coord * pos) {
+	if (pos->getx() + 1 < 5 && maze[pos->getz()][pos->gety()][pos->getx() + 1] == 1) {
+		pos->incx();
 		return true;
 	}
 	return false;
