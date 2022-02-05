@@ -1,6 +1,6 @@
 #include "PathfinderInterface.h"
-#include "coord"
-#include "node"
+#include "coord.h"
+#include "node.h"
 #include <vector>
 
 using namespace std;
