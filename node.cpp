@@ -8,7 +8,7 @@ Node::Node() {
 }
 
 Node::Node(Coord pos, Node * parent) {
-	position = pos;
+	*position = pos;
 	parent_node = parent;
 	cost_g = 0;
 	cost_f = 0;
@@ -17,7 +17,7 @@ Node::Node(Coord pos, Node * parent) {
 
 Node::~Node(){
 	delete position;
-	delete parent_node
+	delete parent_node;
 }
 
 Node * Node::getParent() {
