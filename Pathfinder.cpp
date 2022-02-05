@@ -36,9 +36,9 @@ string Pathfinder::toString() const {
 }
 
 void Pathfinder::createRandomMaze() {
-	for (auto &grid : *maze) {
-		for (auto &line : grid) {
-			for (auto &i : line) {
+	for (auto& grid : *maze) {
+		for (auto line : grid) {
+			for (auto i : line) {
 				int random = rand();
 				i = random % 2;
 			}
@@ -74,9 +74,9 @@ bool Pathfinder::importMaze(string file_name) {
 		return false;
 	}
 	int index = 0;
-	for (auto &grid : *maze) {
-		for (auto &line : grid) {
-			for (auto &i : line) {
+	for (auto& grid : *maze) {
+		for (auto line : grid) {
+			for (auto i : line) {
 				i = vals[index];
 				index++;
 			}
@@ -88,9 +88,7 @@ bool Pathfinder::importMaze(string file_name) {
 vector<string> Pathfinder::solveMaze() {
 	vector<int> final_pos{num_grids - 1, grid_size - 1, grid_size - 1};
 	cout << *maze[pos->getz() - 1][pos->gety()][pos->getx()] << endl;
-	if (curr_pos == final_pos) {
-		return solved;
-	}
+	return solved;
 }
 
 /*
