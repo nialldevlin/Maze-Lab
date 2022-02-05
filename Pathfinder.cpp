@@ -93,9 +93,9 @@ vector<string> Pathfinder::solveMaze() {
 	Coord finalPos(num_grids - 1, grid_size - 1, grid_size - 1); //Goal position
 	curr_pos.set(0, 0, 0);
 	Node first(curr_pos); //Initialize first node to start
-	float g_1 = g(first);	//Initialize cost functions for first node
-	float h_1 = h(first);
-	float f_1 = f(first);
+	float g_1 = findG(first);	//Initialize cost functions for first node
+	float h_1 = findH(first);
+	float f_1 = findF(first);
 	first.setg(g_1);
 	first.seth(h_1);
 	first.setf(f_1);
@@ -104,11 +104,7 @@ vector<string> Pathfinder::solveMaze() {
 	Node current;
 	while (to_visit.size() > 0) {
 		//Find element on visit list with lowest f value
-		current = std::min_element( to_visit.begin(), to_visit.end(),
-                             []( const Node &a, const Node &b )
-                             {
-                                 return a.getf(); < b.getf();
-                             } );
+		current = std::min_element(to_visit.begin(), to_visit.end());
 
 		to_visit.erase(current)
 		visited.insert(current);
@@ -144,10 +140,10 @@ vector<string> Pathfinder::findPath(Node current) {
 void Pathfinder::expandNode(Node n, bool (*direction)(Coord*)) {
 	Node new_n = n;
 	if (direction(new_n) && visited.find(new_n) == visited.end()) {
-		new_n.setParent(n)
-		float g = g(new_n);	//Initialize cost functions for node
-		float h = h(new_n);
-		float f = f(new_n);
+		new_n.setParent(n);
+		float g = findG(new_n);	//Initialize cost functions for node
+		float h = findH(new_n);
+		float f = findF(new_n);
 		new_n.setg(g);
 		new_n.seth(h);
 		new_n.setf(f);
@@ -155,19 +151,19 @@ void Pathfinder::expandNode(Node n, bool (*direction)(Coord*)) {
 	}  
 }
 
-int Pathfinder::g(Node n) {
+int Pathfinder::findG(Node n) {
 	if (n.getParent() != NULL) {
 		return n.getParent()->getg() + 1;
 	}
 	return 0;
 }
 
-int Pathfinder::h(Node n) {
+int Pathfinder::findH(Node n) {
 	Coord finalPos(num_grids - 1, grid_size - 1, grid_size - 1);
 	return n.getPos().getDist(finalPos);
 }
 
-int Pathfinder::f(Node n) {
+int Pathfinder::findF(Node n) {
 	return g(n) + h(n);
 }
 

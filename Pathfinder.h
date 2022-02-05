@@ -15,7 +15,7 @@ private:
 	const static short grid_size = 5;
 	vector<vector<vector<bool>>> * maze;
 	vector<Coord> solved;
-	set<Node visited; //Seen nodes
+	set<Node> visited; //Seen nodes
 	set<Node> to_visit; //Nodes to visit
 	Coord * curr_pos;
 	

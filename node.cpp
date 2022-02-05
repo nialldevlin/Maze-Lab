@@ -68,3 +68,7 @@ Coord Node::getPos() {
 void Node::setPos(Coord pos) {
 	*position = pos;
 }
+
+bool operator< (const Node& c1, const Node& n2) {
+    return c1.cost_f < c2.cost_f;
+}
