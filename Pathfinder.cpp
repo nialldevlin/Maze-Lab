@@ -91,10 +91,10 @@ vector<string> Pathfinder::solveMaze() {
 		return solved;
 	}
 }
-/*
+
 //Private functions
 bool Pathfinder::up(Coord * pos) {
-	if (pos->getz() - 1 >= 0 && maze[pos->getz() - 1][pos->gety()][pos->getx()] == true) {
+	if (pos->getz() - 1 >= 0 && *maze[pos->getz() - 1][pos->gety()][pos->getx()] == true) {
 		pos->decz();
 		return true;
 	}
@@ -102,7 +102,7 @@ bool Pathfinder::up(Coord * pos) {
 }
 
 bool Pathfinder::down(Coord * pos) {
-	if (pos->getz() + 1 < num_grids && maze[pos->getz() + 1][pos->gety()][pos->getx()] == true) {
+	if (pos->getz() + 1 < num_grids && *maze[pos->getz() + 1][pos->gety()][pos->getx()] == true) {
 		pos->incz();
 		return true;
 	}
@@ -110,7 +110,7 @@ bool Pathfinder::down(Coord * pos) {
 }
 
 bool Pathfinder::forward(Coord * pos) {
-	if (pos->gety() - 1 >= 0 && maze[pos->getz()][pos->gety() - 1][pos->getx()] == true) {
+	if (pos->gety() - 1 >= 0 && *maze[pos->getz()][pos->gety() - 1][pos->getx()] == true) {
 		pos->decy();
 		return true;
 	}
@@ -118,7 +118,7 @@ bool Pathfinder::forward(Coord * pos) {
 }
 
 bool Pathfinder::backward(Coord * pos) {
-	if (pos->gety() + 1 < grid_size && maze[pos->getz()][pos->gety() + 1][pos->getx()] == true) {
+	if (pos->gety() + 1 < grid_size && *maze[pos->getz()][pos->gety() + 1][pos->getx()] == true) {
 		pos->incy();
 		return true;
 	}
@@ -126,7 +126,7 @@ bool Pathfinder::backward(Coord * pos) {
 }
 
 bool Pathfinder::left(Coord * pos) {
-	if (pos->getx() - 1 >= 0 && maze[pos->getz()][pos->gety()][pos->getx() - 1] == true) {
+	if (pos->getx() - 1 >= 0 && *maze[pos->getz()][pos->gety()][pos->getx() - 1] == true) {
 		pos->decx();
 		return true;
 	}
@@ -134,10 +134,9 @@ bool Pathfinder::left(Coord * pos) {
 }
 
 bool Pathfinder::right(Coord * pos) {
-	if (pos->getx() + 1 < 5 && maze[pos->getz()][pos->gety()][pos->getx() + 1] == true) {
+	if (pos->getx() + 1 < 5 && *maze[pos->getz()][pos->gety()][pos->getx() + 1] == true) {
 		pos->incx();
 		return true;
 	}
 	return false;
 }
-*/
