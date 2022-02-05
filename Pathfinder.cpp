@@ -22,7 +22,7 @@ Pathfinder::~Pathfinder() {
 
 string Pathfinder::toString() const {
 	string outstr = "";
-	for (auto grid : maze) {
+	for (auto grid : *maze) {
 		for (auto line : grid) {
 			for (auto i : line) {
 				outstr += i;
@@ -40,7 +40,7 @@ void Pathfinder::createRandomMaze() {
 		for (auto &line : grid) {
 			for (auto &i : line) {
 				int random = rand();
-				i = random % 2;
+				*i = random % 2;
 			}
 		}
 	}

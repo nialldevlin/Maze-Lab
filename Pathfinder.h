@@ -14,7 +14,7 @@ private:
 	const static short grid_size = 5;
 	vector<vector<vector<bool>>> * maze;
 	vector<string> solved;
-	Coord curr_pos;
+	Coord * curr_pos;
 
 	bool up(Coord * pos);
 	bool down(Coord * pos);
