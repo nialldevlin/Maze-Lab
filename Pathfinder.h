@@ -1,4 +1,6 @@
 #include "PathfinderInterface.h"
+#include "coord"
+#include "node"
 #include <vector>
 
 using namespace std;
@@ -9,7 +11,7 @@ private:
 	const static short grid_size = 5;
 	vectorvector<vector<bool>>> maze;
 	vector<string> solved;
-	vector<int> curr_pos(3, 0);
+	Coord curr_pos;
 
 	bool up(int *pos);
 	bool down(int *pos);
