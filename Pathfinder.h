@@ -15,13 +15,13 @@ private:
 	vector<vector<vector<bool>>> * maze;
 	vector<string> solved;
 	Coord * curr_pos;
-	
+	/*
 	bool up(Coord * pos);
 	bool down(Coord * pos);
 	bool forward(Coord * pos);
 	bool backward(Coord * pos);
 	bool left(Coord * pos);
-	bool right(Coord * pos);
+	bool right(Coord * pos);*/
 public:
 	Pathfinder();
 	~Pathfinder();

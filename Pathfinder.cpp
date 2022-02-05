@@ -87,11 +87,13 @@ bool Pathfinder::importMaze(string file_name) {
 
 vector<string> Pathfinder::solveMaze() {
 	vector<int> final_pos{num_grids - 1, grid_size - 1, grid_size - 1};
+	cout << *maze[pos->getz() - 1][pos->gety()][pos->getx()] << endl;
 	if (curr_pos == final_pos) {
 		return solved;
 	}
 }
 
+/*
 //Private functions
 bool Pathfinder::up(Coord * pos) {
 	if (pos->getz() - 1 >= 0 && *maze[pos->getz() - 1][pos->gety()][pos->getx()] == true) {
@@ -140,3 +142,4 @@ bool Pathfinder::right(Coord * pos) {
 	}
 	return false;
 }
+*/
