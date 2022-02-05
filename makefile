@@ -1,5 +1,5 @@
 maze: main.o Pathfinder.o
-	g++ -o maze main.o Pathfinder.o
+	g++ -o maze main.o Pathfinder.o node.o coord.o
 
 node: node.cpp node.h
 	g++ -o node.o node.cpp
