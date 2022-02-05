@@ -83,9 +83,9 @@ bool Pathfinder::importMaze(string file_name) {
 
 vector<string> Pathfinder::solveMaze() {
 	vector<string> solved;
-	int pos = {0,0,0};
+	int pos[3] = { 0 };
 	cout << pos[0] << " " << pos[1] << " "  << pos[2] << endl;
-	up(pos);
+	cout << down(pos) << endl;
 	cout << pos[0] << " " << pos[1] << " "  << pos[2] << endl;
 	return solved;
 }
