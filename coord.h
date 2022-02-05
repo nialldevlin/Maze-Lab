@@ -20,6 +20,8 @@ public:
 	void sety(int yy);
 	void setz(int zz);
 
+	void set(int x, int y, int z);
+
 	void decx();
 	void decy();
 	void decz();
@@ -27,8 +29,6 @@ public:
 	void incx();
 	void incy();
 	void incz();
-
-	int set(int x, int y, int z);
 };
 
 #endif

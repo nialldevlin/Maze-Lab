@@ -45,7 +45,7 @@ void Coord::setz(int zz) {
 	}
 }
 
-int Coord::set(int xx, int yy, int zz) {
+void Coord::set(int xx, int yy, int zz) {
 	x = xx;
 	y = yy;
 	z = zz;
