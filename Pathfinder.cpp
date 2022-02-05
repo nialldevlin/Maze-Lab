@@ -10,6 +10,7 @@
 using namespace std;
 
 Pathfinder::Pathfinder() {
+	maze = new vector<vector<vector<bool>>> (num_grids, vector<vector<bool>>(grid_size, vector<bool>(grid_size, value)));
 	srand(time(NULL));
 }
 
