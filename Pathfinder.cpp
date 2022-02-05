@@ -11,11 +11,13 @@ using namespace std;
 
 Pathfinder::Pathfinder() {
 	maze = new vector<vector<vector<bool>>> (num_grids, vector<vector<bool>>(grid_size, vector<bool>(grid_size, 1)));
+	curr_pos = new Coord();
 	srand(time(NULL));
 }
 
 Pathfinder::~Pathfinder() {
 	delete maze;
+	delete curr_pos;
 }
 
 string Pathfinder::toString() const {
@@ -92,15 +94,15 @@ vector<string> Pathfinder::solveMaze() {
 }
 
 //Private functions
-bool Pathfinder::up(int *pos) {
-	if ( pos[0] - 1 >= 0 && pos[0] - 1 < num_grids && maze[pos[0] - 1][pos[1]][pos[2]] == 1) {
-		pos[0]--;
+bool Pathfinder::up(Coord *pos) {
+	if ( *pos->getz() - 1 >= 0 && maze[*pos->getz() - 1][pos[1]][pos[2]] == 1) {
+		*pos->decz;
 		return true;
 	}
 	return false;
 }
 
-bool Pathfinder::down(int *pos) {
+bool Pathfinder::down(Coord *pos) {
 	if ( pos[0] + 1 >= 0 && pos[0] + 1 < num_grids && maze[pos[0] + 1][pos[1]][pos[2]] == 1) {
 		pos[0]++;
 		return true;
@@ -108,7 +110,7 @@ bool Pathfinder::down(int *pos) {
 	return false;
 }
 
-bool Pathfinder::forward(int *pos) {
+bool Pathfinder::forward(Coord *pos) {
 	if ( pos[1] - 1 >= 0 && pos[1] - 1 < num_grids && maze[pos[0]][pos[1] - 1][pos[2]] == 1) {
 		pos[1]--;
 		return true;
@@ -116,7 +118,7 @@ bool Pathfinder::forward(int *pos) {
 	return false;
 }
 
-bool Pathfinder::backward(int *pos) {
+bool Pathfinder::backward(Coord *pos) {
 	if ( pos[1] + 1 >= 0 && pos[1] + 1 < num_grids && maze[pos[0]][pos[1] + 1][pos[2]] == 1) {
 		pos[1]++;
 		return true;
@@ -124,7 +126,7 @@ bool Pathfinder::backward(int *pos) {
 	return false;
 }
 
-bool Pathfinder::left(int *pos) {
+bool Pathfinder::left(int *Coord) {
 	if ( pos[2] - 1 >= 0 && pos[2] - 1 < num_grids && maze[pos[0]][pos[1]][pos[2] - 1] == 1) {
 		pos[2]--;
 		return true;
@@ -132,7 +134,7 @@ bool Pathfinder::left(int *pos) {
 	return false;
 }
 
-bool Pathfinder::right(int *pos) {
+bool Pathfinder::right(int *Coord) {
 	if ( pos[2] + 1 >= 0 && pos[2] + 1 < num_grids && maze[pos[0]][pos[1]][pos[2] + 1] == 1) {
 		pos[2]++;
 		return true;

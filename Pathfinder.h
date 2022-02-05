@@ -12,16 +12,16 @@ class Pathfinder: public PathfinderInterface {
 private:
 	const static short num_grids = 5;
 	const static short grid_size = 5;
-	vector<vector<vector<bool>>> maze;
+	vector<vector<vector<bool>>> * maze;
 	vector<string> solved;
 	Coord curr_pos;
 
-	bool up(int *pos);
-	bool down(int *pos);
-	bool forward(int *pos);
-	bool backward(int *pos);
-	bool left(int *pos);
-	bool right(int *pos);
+	bool up(Coord * pos);
+	bool down(Coord * pos);
+	bool forward(Coord * pos);
+	bool backward(Coord * pos);
+	bool left(Coord * pos);
+	bool right(Coord * pos);
 public:
 	Pathfinder();
 	~Pathfinder();
