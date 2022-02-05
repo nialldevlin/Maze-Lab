@@ -6,6 +6,7 @@ private:
 	int x;
 	int y;
 	int z;
+
 public:
 	Coord();
 	Coord(int x, int y, int z);

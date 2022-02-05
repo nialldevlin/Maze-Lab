@@ -11,6 +11,7 @@ private:
 	int cost_h;
 	int cost_f;
 
+
 public:
 	Node();
 	Node(Coord pos, Node * parent);
