@@ -132,10 +132,10 @@ vector<string> Pathfinder::solveMaze() {
 //Private functions
 vector<string> Pathfinder::findPath(Node current) {
 	vector<string> path;
-	Node curr = current;
+	Node * curr = &current;
 	while (curr != NULL) {
-		path.push_back(current.getPos().str());
-		curr = curr.getParent();
+		path.push_back(curr->getPos().str());
+		curr = curr->getParent();
 	}
 	reverse(path.begin(), path.end());
 	return path;
@@ -156,8 +156,8 @@ void Pathfinder::expandNode(Node n, bool (*direction)(Coord*)) {
 }
 
 int Pathfinder::g(Node n) {
-	if (n.getParent()) {
-		return n.getParent().getg() + 1;
+	if (n.getParent() != NULL) {
+		return n.getParent()->getg() + 1;
 	}
 	return 0;
 }

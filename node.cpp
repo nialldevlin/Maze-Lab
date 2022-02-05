@@ -30,7 +30,7 @@ Node::~Node(){
 }
 
 Node * Node::getParent() {
-	return *parent_node;
+	return parent_node;
 }
 
 void Node::setParent(Node parent) {
