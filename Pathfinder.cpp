@@ -44,8 +44,8 @@ void Pathfinder::createRandomMaze() {
 			}
 		}
 	}
-	maze[0][0][0] = 1;
-	maze[num_grids - 1][grid_size - 1][grid_size - 1] = 1;
+	//maze[0][0][0] = 1;
+	//maze[num_grids - 1][grid_size - 1][grid_size - 1] = 1;
 }
 
 bool Pathfinder::importMaze(string file_name) {
@@ -87,7 +87,7 @@ bool Pathfinder::importMaze(string file_name) {
 
 vector<string> Pathfinder::solveMaze() {
 	vector<int> final_pos{num_grids - 1, grid_size - 1, grid_size - 1};
-	cout << *maze[pos->getz() - 1][pos->gety()][pos->getx()] << endl;
+	cout << *maze[curr_pos->getz() - 1][curr_pos->gety()][curr_pos->getx()] << endl;
 	return solved;
 }
 
