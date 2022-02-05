@@ -1,5 +1,5 @@
 #include "Pathfinder.h"
-#include "coords.h"
+#include "coord.h"
 #include "node.h"
 #include <stdlib.h>
 #include <time.h>
