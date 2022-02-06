@@ -142,22 +142,22 @@ void Pathfinder::expandNode(Node n, int direction) {
 
 	switch (direction) {
 		case 0:
-			not_fail = up(new_n);
+			not_fail = up(&new_n);
 			break;
 		case 1:
-			not_fail = down(new_n);
+			not_fail = down(&new_n);
 			break;
 		case 2:
-			not_fail = forward(new_n);
+			not_fail = forward(&new_n);
 			break;
 		case 3:
-			not_fail = backward(new_n);
+			not_fail = backward(&new_n);
 			break;
 		case 4:
-			not_fail = left(new_n);
+			not_fail = left(&new_n);
 			break;
 		case 5:
-			not_fail = right(new_n);
+			not_fail = right(&new_n);
 			break;
 
 	}
