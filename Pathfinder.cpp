@@ -107,6 +107,7 @@ vector<string> Pathfinder::solveMaze() {
 
 	Node current;
 	while (to_visit.size() > 0) {
+		cout << "solve" << endl;
 		iter += 1;
 		//Find element on visit list with lowest f value
 		current = *min_element(to_visit.begin(), to_visit.end());
