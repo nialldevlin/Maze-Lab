@@ -101,6 +101,7 @@ vector<string> Pathfinder::solveMaze() {
 	cout << "g " << g_1 <<" pre h" << endl;
 	float h_1 = findH(first);
 	float f_1 = findF(first);*/
+	cout << "pre g" << endl;
 	first.setg(0.0);
 	first.seth(0.0);
 	first.setf(0.0);
