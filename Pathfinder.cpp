@@ -9,6 +9,7 @@
 #include <limits>
 #include <set>
 #include <algorithm>
+#include <cmath>
 
 using namespace std;
 
@@ -23,26 +24,24 @@ Pathfinder::~Pathfinder() {
 }
 
 string Pathfinder::toString() const {
-	string outstr = "";
-	for (auto grid : *maze) {
-		for (auto line : grid) {
-			for (auto i : line) {
-				outstr += i;
-				outstr += " ";
+	stringstream ss;
+	for (int i = 0; i < (*maze).size(); i++) {
+		for (int j = 0; j < (*maze)[0].size(); j++) {
+			for (int k = 0; k < (*maze)[0].size(); k++) {
+				ss << (*maze)[i][j][k] << " ";
 			}
-			outstr += "\n";
+			ss << endl;
 		}
-		outstr += "\n";
+		ss << endl;
 	}
-	return outstr;
+	return ss.str();
 }
 
 void Pathfinder::createRandomMaze() {
-	for (auto& grid : *maze) {
-		for (auto line : grid) {
-			for (auto i : line) {
-				int random = rand();
-				i = random % 2;
+	for (int i = 0; i < (*maze).size(); i++) {
+		for (int j = 0; j < (*maze)[0].size(); j++) {
+			for (int k = 0; k < (*maze)[0].size(); k++) {
+				(*maze)[i][j][k] = rand() % 2;
 			}
 		}
 	}
@@ -56,7 +55,6 @@ bool Pathfinder::importMaze(string file_name) {
 	if (!ifs.is_open()) {
 		return false;
 	}
-
 	string line;
 	vector<bool> vals;
 	int ones = 0;
@@ -75,11 +73,14 @@ bool Pathfinder::importMaze(string file_name) {
 	if (vals.size() < num_grids * grid_size * grid_size) {
 		return false;
 	}
+	if (abs(zeroes - ones) >= 40) {
+        return false;
+	}
 	int index = 0;
-	for (auto& grid : *maze) {
-		for (auto line : grid) {
-			for (auto i : line) {
-				i = vals[index];
+	for (int i = 0; i < (*maze).size(); i++) {
+		for (int j = 0; j < (*maze)[0].size(); j++) {
+			for (int k = 0; k < (*maze)[0].size(); k++) {
+				(*maze)[i][j][k] = vals[index];
 				index++;
 			}
 		}
