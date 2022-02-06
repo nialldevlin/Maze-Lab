@@ -140,15 +140,13 @@ vector<string> Pathfinder::findPath(Node current) {
 }
 
 void Pathfinder::expandNode(Node n, bool (Pathfinder::*direction)(Node*)) {
+	Coord finalPos(num_grids - 1, grid_size - 1, grid_size - 1); //Goal position
 	Node new_n = n;
 	if ((this->*direction)(&new_n) && visited.find(new_n) == visited.end()) {
 		new_n.setParent(n);
-		float g = findG(new_n);	//Initialize cost functions for node
-		float h = findH(new_n);
-		float f = findF(new_n);
-		new_n.setg(g);
-		new_n.seth(h);
-		new_n.setf(f);
+		new_n.setg();
+		new_n.seth(finalPos);
+		new_n.setf();
 		to_visit.insert(new_n);
 	}  
 }
