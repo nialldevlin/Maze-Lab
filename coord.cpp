@@ -1,4 +1,5 @@
 #include "coord.h"
+#include <string>
 
 Coord::Coord() {
 	x = 0;
@@ -100,7 +101,7 @@ float Coord::getDist(Coord other) {
 	return sqrt(xdiff * xdiff + ydiff * ydiff + zdiff * zdiff);
 }
 
-string Coord::str() {
+std::string Coord::str() {
 	return "(" + x + ", " + y + ", " + z + ")";
 }
 
