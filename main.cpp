@@ -51,6 +51,7 @@ int main() {
 		if (pathptr != NULL) {
 			delete pathptr;
 			pathptr = NULL;
+			std::cout << "here" << std::endl;
 		}
 		ifs.close();
 		ofs.close();
