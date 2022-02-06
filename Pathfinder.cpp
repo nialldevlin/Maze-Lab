@@ -40,7 +40,9 @@ string Pathfinder::toString() const {
 
 void Pathfinder::createRandomMaze() {
 	for (auto& grid : *maze) {
+		cout << "random maze" << endl;
 		for (auto line : grid) {
+			cout << "random maze" << endl;
 			for (auto i : line) {
 				cout << "random maze" << endl;
 				int random = rand();
