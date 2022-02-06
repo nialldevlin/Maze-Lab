@@ -139,29 +139,33 @@ void Pathfinder::expandNode(Node n, int direction) {
 	Coord finalPos(num_grids - 1, grid_size - 1, grid_size - 1); //Goal position
 	Node new_n = n;
 	bool not_fail;
-	cout << "here0" << endl;
 	switch (direction) {
 		case 0:
+			cout << "here0" << endl;
 			not_fail = up(&new_n);
 			break;
 		case 1:
+			cout << "here1" << endl;
 			not_fail = down(&new_n);
 			break;
 		case 2:
+			cout << "here2" << endl;
 			not_fail = forward(&new_n);
 			break;
 		case 3:
+			cout << "here3" << endl;
 			not_fail = backward(&new_n);
 			break;
 		case 4:
+			cout << "here4" << endl;
 			not_fail = left(&new_n);
 			break;
 		case 5:
+			cout << "here5" << endl;
 			not_fail = right(&new_n);
 			break;
 
 	}
-	cout << "here1" << endl;
 	if (not_fail && visited.find(new_n) == visited.end()) {
 		new_n.setParent(n);
 		new_n.setg();
