@@ -137,7 +137,7 @@ vector<string> Pathfinder::solveMaze() {
 vector<string> Pathfinder::findPath(Node current) {
 	vector<string> path;
 	Node * curr = &current;
-	while (curr != NULL) {
+	while (curr != nullptr) {
 		path.push_back(curr->getPos()->str());
 		curr = curr->getParent();
 	}
@@ -161,8 +161,8 @@ void Pathfinder::expandNode(Node n, bool (Pathfinder::*direction)(Node*)) {
 
 float Pathfinder::findG(Node n) {
 	cout << "g1" << endl;
-	cout << n.getParent() != NULL << endl;
-	if (n.getParent() != NULL) {
+	cout << (n.getParent() != nullptr) << endl;
+	if (n.getParent() != nullptr) {
 		cout << "g2" << endl;
 		return n.getParent()->getg() + 1;
 	}
