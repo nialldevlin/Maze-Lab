@@ -91,7 +91,6 @@ bool Pathfinder::importMaze(string file_name) {
 
 vector<string> Pathfinder::solveMaze() {
 	//A*
-	cout << "solve" << endl;
 	Coord finalPos(num_grids - 1, grid_size - 1, grid_size - 1); //Goal position
 	curr_pos->set(0, 0, 0);
 	Node first(*curr_pos); //Initialize first node to start
@@ -99,6 +98,7 @@ vector<string> Pathfinder::solveMaze() {
 	float g_1 = findG(first);	//Initialize cost functions for first node
 	float h_1 = findH(first);
 	float f_1 = findF(first);
+	cout << "solve" << endl;
 	first.setg(g_1);
 	first.seth(h_1);
 	first.setf(f_1);
