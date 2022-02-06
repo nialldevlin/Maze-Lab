@@ -61,7 +61,7 @@ void Node::setg() {
 }
 
 void Node::seth(Coord finalpos) {
-	cost_h = position->getDist(finalPos);
+	cost_h = position->getDist(finalpos);
 }
 
 void Node::setf() {
