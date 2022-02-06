@@ -52,16 +52,20 @@ int Node::getf() {
 	return cost_f;
 }
 
-void Node::setg(int g) {
-	cost_g = g;
+void Node::setg() {
+	if (parent_node != nullptr) {
+		cost_g = parent_node->getg() + 1.0;
+	} else {
+		cost_g = 0.0;
+	}
 }
 
-void Node::seth(int h) {
-	cost_h = h;
+void Node::seth(Coord finalpos) {
+	cost_h = position->getDist(finalPos);
 }
 
-void Node::setf(int f) {
-	cost_f = f;
+void Node::setf() {
+	cost_f = cost_g + cost_h;
 }
 
 Coord * Node::getPos() {

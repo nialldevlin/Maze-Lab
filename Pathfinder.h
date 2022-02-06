@@ -17,7 +17,6 @@ private:
 	vector<Coord> solved;
 	set<Node> visited; //Seen nodes
 	set<Node> to_visit; //Nodes to visit
-	Coord * curr_pos;
 	
 	bool up(Node * pos);
 	bool down(Node * pos);
@@ -25,10 +24,6 @@ private:
 	bool backward(Node * pos);
 	bool left(Node * pos);
 	bool right(Node * pos);
-
-	float findG(Node n);
-	float findH(Node n);
-	float findF(Node n);
 
 	void expandNode(Node n, bool (Pathfinder::*direction)(Node*));
 	vector<string> findPath(Node current);

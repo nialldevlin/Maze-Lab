@@ -14,15 +14,12 @@ using namespace std;
 
 Pathfinder::Pathfinder() {
 	maze = new vector<vector<vector<bool>>> (num_grids, vector<vector<bool>>(grid_size, vector<bool>(grid_size, 1)));
-	curr_pos = new Coord();
 	srand(time(NULL));
 }
 
 Pathfinder::~Pathfinder() {
 	if (maze)
 		delete maze;
-	if (curr_pos)
-		delete curr_pos;
 }
 
 string Pathfinder::toString() const {
@@ -94,24 +91,19 @@ bool Pathfinder::importMaze(string file_name) {
 vector<string> Pathfinder::solveMaze() {
 	//A*
 	Coord finalPos(num_grids - 1, grid_size - 1, grid_size - 1); //Goal position
-	curr_pos->set(0, 0, 0);
-	Node first(curr_pos); //Initialize first node to start
-	float g_1 = findG(first);	//Initialize cost functions for first node
-	float h_1 = findH(first);
-	float f_1 = findF(first);
-	first.setg(g_1);
-	first.seth(h_1);
-	first.setf(f_1);
-	to_visit.insert(first); //Add first node to list to visit
+	Node current(); //Initialize current node to start
+	current.setg(); //Initialize cost functions
+	current.seth(finalPos);
+	current.setf();
+	to_visit.insert(current); //Add first node to list to visit
 
 	int MAX_ITER = num_grids * grid_size * grid_size;
 	int iter = 0;
 	cout << "here" << endl;
-	Node current;
 	while (to_visit.size() > 0) {
 		iter += 1;
 		//Find element on visit list with lowest f value
-		current = *min_element(to_visit.begin(), to_visit.end());
+		current = *to_visit.begin();
 
 		to_visit.erase(current);
 		visited.insert(current);
@@ -159,25 +151,6 @@ void Pathfinder::expandNode(Node n, bool (Pathfinder::*direction)(Node*)) {
 		new_n.setf(f);
 		to_visit.insert(new_n);
 	}  
-}
-
-float Pathfinder::findG(Node n) {
-	cout << "g1 " << n.getParent() << endl;
-	if (n.getParent() != nullptr) {
-		cout << "g2" << endl;
-		return n.getParent()->getg() + 1;
-	}
-	cout << "g3" << endl;
-	return 0.0;
-}
-
-float Pathfinder::findH(Node n) {
-	Coord finalPos(num_grids - 1, grid_size - 1, grid_size - 1);
-	return n.getPos()->getDist(finalPos);
-}
-
-float Pathfinder::findF(Node n) {
-	return findG(n) + findH(n);
 }
 
 bool Pathfinder::up(Node * pos) {

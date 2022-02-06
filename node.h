@@ -24,9 +24,9 @@ public:
 	int geth();
 	int getf();
 
-	void setg(int g);
-	void seth(int h);
-	void setf(int f);
+	void setg();
+	void seth(Coord finalpos);
+	void setf();
 
 	Coord * getPos();
 	void setPos(Coord pos);
