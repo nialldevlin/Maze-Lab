@@ -25,7 +25,7 @@ private:
 	bool left(Node * pos);
 	bool right(Node * pos);
 
-	void expandNode(Node n, bool (Pathfinder::*direction)(Node*));
+	void expandNode(Node n, int direction);
 	vector<string> findPath(Node current);
 
 public:

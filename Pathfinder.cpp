@@ -115,19 +115,9 @@ vector<string> Pathfinder::solveMaze() {
 		}
 
 		//Expand visit list to all neighbors
-		cout << "1" << endl;
-		expandNode(current, &Pathfinder::up);
-		cout << "2" << endl;
-		expandNode(current, &Pathfinder::down);
-		cout << "3" << endl;
-		expandNode(current, &Pathfinder::forward);
-		cout << "4" << endl;
-		expandNode(current, &Pathfinder::backward);
-		cout << "5" << endl;
-		expandNode(current, &Pathfinder::left);
-		cout << "6" << endl;
-		expandNode(current, &Pathfinder::right);
-		cout << "7" << endl;
+		for (int i = 0; i < 6; i++) {
+			expandNode(current, i);
+		}
 	}
 	vector<string> out;
 	return out;
@@ -145,22 +135,39 @@ vector<string> Pathfinder::findPath(Node current) {
 	return path;
 }
 
-void Pathfinder::expandNode(Node n, bool (Pathfinder::*direction)(Node*)) {
+void Pathfinder::expandNode(Node n, int direction) {
 	Coord finalPos(num_grids - 1, grid_size - 1, grid_size - 1); //Goal position
 	Node new_n = n;
-	cout << "here0" << endl;
-	bool works = (this->*direction)(&new_n);
-	cout << "here1" << endl;
-	bool not_found = (visited.find(new_n) == visited.end());
-	cout << "here2" << endl;
-	if (works && not_found) {
-		cout << "here3" << endl;
+	bool not_fail;
+
+	switch (direction) {
+		case 0:
+			not_fail = up(new_n);
+			break;
+		case 1:
+			not_fail = down(new_n);
+			break;
+		case 2:
+			not_fail = forward(new_n);
+			break;
+		case 3:
+			not_fail = backward(new_n);
+			break;
+		case 4:
+			not_fail = left(new_n);
+			break;
+		case 5:
+			not_fail = right(new_n);
+			break;
+
+	}
+
+	if (not_fail && visited.find(new_n) == visited.end()) {
 		new_n.setParent(n);
 		new_n.setg();
 		new_n.seth(finalPos);
 		new_n.setf();
 		to_visit.insert(new_n);
-		cout << "here4" << endl;
 	}
 }
 
