@@ -91,8 +91,8 @@ bool Pathfinder::importMaze(string file_name) {
 vector<string> Pathfinder::solveMaze() {
 	//A*
 	Coord finalPos(num_grids - 1, grid_size - 1, grid_size - 1); //Goal position
-	curr_pos.set(0, 0, 0);
-	Node first(curr_pos); //Initialize first node to start
+	curr_pos->set(0, 0, 0);
+	Node first(*curr_pos); //Initialize first node to start
 	float g_1 = findG(first);	//Initialize cost functions for first node
 	float h_1 = findH(first);
 	float f_1 = findF(first);
@@ -106,20 +106,20 @@ vector<string> Pathfinder::solveMaze() {
 		//Find element on visit list with lowest f value
 		current = std::min_element(to_visit.begin(), to_visit.end());
 
-		to_visit.erase(current)
+		to_visit.erase(current);
 		visited.insert(current);
 
 		if (current.getPos() == finalPos) {
-			return 
+			return findPath(current)
 		}
 
 		//Expand visit list to all neighbors
-		expandNode(current, &up);
-		expandNode(current, &down);
-		expandNode(current, &forward);
-		expandNode(current, &backward);
-		expandNode(current, &left);
-		expandNode(current, &right);
+		expandNode(current, &Pathfinder::up);
+		expandNode(current, &Pathfinder::down);
+		expandNode(current, &Pathfinder::forward);
+		expandNode(current, &Pathfinder::backward);
+		expandNode(current, &Pathfinder::left);
+		expandNode(current, &Pathfinder::right);
 	}
 
 	return solved_string;
@@ -151,19 +151,19 @@ void Pathfinder::expandNode(Node n, bool (*direction)(Coord*)) {
 	}  
 }
 
-int Pathfinder::findG(Node n) {
+float Pathfinder::findG(Node n) {
 	if (n.getParent() != NULL) {
 		return n.getParent()->getg() + 1;
 	}
 	return 0;
 }
 
-int Pathfinder::findH(Node n) {
+float Pathfinder::findH(Node n) {
 	Coord finalPos(num_grids - 1, grid_size - 1, grid_size - 1);
 	return n.getPos().getDist(finalPos);
 }
 
-int Pathfinder::findF(Node n) {
+float Pathfinder::findF(Node n) {
 	return g(n) + h(n);
 }
 

@@ -26,9 +26,9 @@ private:
 	bool left(Coord * pos);
 	bool right(Coord * pos);
 
-	int g(Node n);
-	int h(Node n);
-	int f(Node n);
+	float findG(Node n);
+	float findH(Node n);
+	float findF(Node n);
 
 	void expandNode(Node n, bool (*direction)(Coord*));
 	vector<string> findPath(Node current);

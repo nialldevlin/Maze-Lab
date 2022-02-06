@@ -36,7 +36,6 @@ public:
 
 	friend bool operator== (const Coord& c1, const Coord& c2);
 	friend bool operator!= (const Coord& c1, const Coord& c2);
-}
 };
 
 #endif
