@@ -31,11 +31,12 @@ string Pathfinder::toString() const {
 			for (int k = 0; k < (*maze)[0].size(); k++) {
 				ss << separator << (*maze)[i][j][k];
 				separator = " ";
+
 			}
 			separator = "";
 			ss << endl;
 		}
-		ss << endl;
+		ss << "\n";
 	}
 	string outstr = ss.str();
 	outstr.pop_back();

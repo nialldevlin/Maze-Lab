@@ -70,7 +70,6 @@ void parse_instruction(std::string temp, std::ofstream &ofs, Pathfinder* aptr) {
 		else {
 			ofs << temp << " False" << std::endl;
 		}
-		cout << aptr->toString() << endl;
 	}
 	else if (command == "toString") { // command to return the maze represented as a string
 		ofs << temp << "\n" << aptr->toString() << std::endl;
