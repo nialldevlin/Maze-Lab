@@ -1,5 +1,5 @@
 #include "node.h"
-#include <cmath> 
+#include <cmath>
 
 Node::Node() {
 	position = new Coord();
