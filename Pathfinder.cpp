@@ -160,15 +160,16 @@ void Pathfinder::expandNode(Node n, bool (Pathfinder::*direction)(Node*)) {
 }
 
 float Pathfinder::findG(Node n) {
-	cout << "g" << endl;
+	cout << "g1" << endl;
 	if (n.getParent() != NULL) {
+		cout << "g2" << endl;
 		return n.getParent()->getg() + 1;
 	}
+	cout << "g3" << endl;
 	return 0;
 }
 
 float Pathfinder::findH(Node n) {
-	cout << "f" << endl;
 	Coord finalPos(num_grids - 1, grid_size - 1, grid_size - 1);
 	return n.getPos()->getDist(finalPos);
 }
