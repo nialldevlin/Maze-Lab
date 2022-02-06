@@ -9,16 +9,16 @@ Node::Node() {
 	cost_f = 0.0;
 }
 
-Node::Node(Coord pos) {
-	*position = pos;
+Node::Node(Coord * pos) {
+	position = pos;
 	parent_node = nullptr;
 	cost_g = 0.0;
 	cost_f = 0.0;
 	cost_h = 0.0;
 }
 
-Node::Node(Coord pos, Node parent) {
-	*position = pos;
+Node::Node(Coord * pos, Node parent) {
+	position = pos;
 	parent_node = &parent;
 	cost_g = 0.0;
 	cost_f = 0.0;

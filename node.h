@@ -13,8 +13,8 @@ private:
 
 public:
 	Node();
-	Node(Coord pos);
-	Node(Coord pos, Node parent);
+	Node(Coord * pos);
+	Node(Coord * pos, Node parent);
 	~Node();
 
 	Node * getParent();

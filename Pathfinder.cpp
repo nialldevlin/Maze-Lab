@@ -95,13 +95,14 @@ vector<string> Pathfinder::solveMaze() {
 	//A*
 	Coord finalPos(num_grids - 1, grid_size - 1, grid_size - 1); //Goal position
 	curr_pos->set(0, 0, 0);
-	Node first(*curr_pos); //Initialize first node to start
-	float g_1 = findG(first);	//Initialize cost functions for first node
+	cout << curr_pos << endl;
+	Node first(curr_pos); //Initialize first node to start
+	/*float g_1 = findG(first);	//Initialize cost functions for first node
 	float h_1 = findH(first);
 	float f_1 = findF(first);
 	first.setg(g_1);
 	first.seth(h_1);
-	first.setf(f_1);
+	first.setf(f_1);*/
 	to_visit.insert(first); //Add first node to list to visit
 
 	int MAX_ITER = num_grids * grid_size * grid_size;
