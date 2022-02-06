@@ -119,6 +119,7 @@ vector<string> Pathfinder::solveMaze() {
 			expandNode(current, i);
 		}
 	}
+	cout << "here" << endl;
 	vector<string> out;
 	return out;
 }
@@ -143,6 +144,7 @@ void Pathfinder::expandNode(Node n, int direction) {
 		case 0:
 			cout << "here0" << endl;
 			not_fail = up(&new_n);
+			cout << "here0" << endl;
 			break;
 		case 1:
 			cout << "here1" << endl;
@@ -166,6 +168,7 @@ void Pathfinder::expandNode(Node n, int direction) {
 			break;
 
 	}
+	cout << "here12" << endl;
 	if (not_fail && visited.find(new_n) == visited.end()) {
 		new_n.setParent(n);
 		new_n.setg();
@@ -173,7 +176,7 @@ void Pathfinder::expandNode(Node n, int direction) {
 		new_n.setf();
 		to_visit.insert(new_n);
 	}
-	cout << "here2" << endl;
+	cout << "here12" << endl;
 }
 
 bool Pathfinder::up(Node * pos) {
