@@ -95,9 +95,9 @@ vector<string> Pathfinder::solveMaze() {
 	curr_pos->set(0, 0, 0);
 	Node first(*curr_pos); //Initialize first node to start
 	float g_1 = findG(first);	//Initialize cost functions for first node
-	coot << "pre h" << endl;
+	cout << "pre h" << endl;
 	float h_1 = findH(first);
-	coot << "post h" << endl;
+	cout << "post h" << endl;
 	float f_1 = findF(first);
 	first.setg(g_1);
 	first.seth(h_1);
