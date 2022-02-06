@@ -143,12 +143,16 @@ void Pathfinder::expandNode(Node n, bool (Pathfinder::*direction)(Node*)) {
 	cout << "here0" << endl;
 	bool works = (this->*direction)(&new_n);
 	cout << "here1" << endl;
-	if (works && visited.find(new_n) == visited.end()) {
+	bool not_found = (visited.find(new_n) == visited.end());
+	cout << "here2" << endl;
+	if (works && not_found) {
+		cout << "here3" << endl;
 		new_n.setParent(n);
 		new_n.setg();
 		new_n.seth(finalPos);
 		new_n.setf();
 		to_visit.insert(new_n);
+		cout << "here4" << endl;
 	}
 }
 
