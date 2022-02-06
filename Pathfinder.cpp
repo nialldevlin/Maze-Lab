@@ -25,16 +25,21 @@ Pathfinder::~Pathfinder() {
 
 string Pathfinder::toString() const {
 	stringstream ss;
+	string separator = "";
 	for (int i = 0; i < (*maze).size(); i++) {
 		for (int j = 0; j < (*maze)[0].size(); j++) {
 			for (int k = 0; k < (*maze)[0].size(); k++) {
-				ss << (*maze)[i][j][k] << " ";
+				ss << separator << (*maze)[i][j][k];
+				separator = " ";
 			}
+			separator = "";
 			ss << endl;
 		}
 		ss << endl;
 	}
-	return ss.str();
+	string outstr = ss.str();
+	outstr.pop_back();
+	return outstr;
 }
 
 void Pathfinder::createRandomMaze() {
@@ -70,9 +75,6 @@ bool Pathfinder::importMaze(string file_name) {
 				ones++;
 		}
 	}
-	if (vals.size() < num_grids * grid_size * grid_size) {
-		return false;
-	}
 	int index = 0;
 	for (int i = 0; i < (*maze).size(); i++) {
 		for (int j = 0; j < (*maze)[0].size(); j++) {
@@ -81,6 +83,9 @@ bool Pathfinder::importMaze(string file_name) {
 				index++;
 			}
 		}
+	}
+    if (vals.size() < num_grids * grid_size * grid_size) {
+		return false;
 	}
 	return true;
 }
