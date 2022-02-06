@@ -30,7 +30,7 @@ private:
 	float findH(Node n);
 	float findF(Node n);
 
-	void expandNode(Node n, static bool (*direction)(Node*));
+	void expandNode(Node n, bool (Pathfinder::*direction)(Node*));
 	vector<string> findPath(Node current);
 
 public:
