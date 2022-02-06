@@ -62,7 +62,7 @@ void Node::setf(int f) {
 }
 
 Coord Node::getPos() {
-	return *position;
+	return position;
 }
 
 void Node::setPos(Coord pos) {
