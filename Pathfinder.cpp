@@ -106,7 +106,6 @@ vector<string> Pathfinder::solveMaze() {
 
 		to_visit.erase(current);
 		visited.insert(current);
-		cout << "here0" << endl;
 		if (*(current.getPos()) == finalPos) {
 			return findPath(current);
 		}
@@ -114,7 +113,6 @@ vector<string> Pathfinder::solveMaze() {
 		if (iter > MAX_ITER) {
 			return vector<string>();
 		}
-		cout << "here1" << endl;
 
 		//Expand visit list to all neighbors
 		expandNode(current, &Pathfinder::up);
@@ -124,7 +122,6 @@ vector<string> Pathfinder::solveMaze() {
 		expandNode(current, &Pathfinder::left);
 		expandNode(current, &Pathfinder::right);
 	}
-	cout << "here2" << endl;
 	return vector<string>();
 }
 
@@ -141,15 +138,18 @@ vector<string> Pathfinder::findPath(Node current) {
 }
 
 void Pathfinder::expandNode(Node n, bool (Pathfinder::*direction)(Node*)) {
+	cout << "here0" << endl;
 	Coord finalPos(num_grids - 1, grid_size - 1, grid_size - 1); //Goal position
 	Node new_n = n;
+	cout << "here1" << endl;
 	if ((this->*direction)(&new_n) && visited.find(new_n) == visited.end()) {
 		new_n.setParent(n);
 		new_n.setg();
 		new_n.seth(finalPos);
 		new_n.setf();
 		to_visit.insert(new_n);
-	}  
+	}
+	cout << "here2" << endl;
 }
 
 bool Pathfinder::up(Node * pos) {
