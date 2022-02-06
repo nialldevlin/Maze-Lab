@@ -96,20 +96,17 @@ vector<string> Pathfinder::solveMaze() {
 	Coord finalPos(num_grids - 1, grid_size - 1, grid_size - 1); //Goal position
 	curr_pos->set(0, 0, 0);
 	Node first(*curr_pos); //Initialize first node to start
-	/*cout << "pre g" << endl;
 	float g_1 = findG(first);	//Initialize cost functions for first node
-	cout << "g " << g_1 <<" pre h" << endl;
 	float h_1 = findH(first);
-	float f_1 = findF(first);*/
-	cout << "pre g" << endl;
-	first.setg(0.0);
-	first.seth(0.0);
-	first.setf(0.0);
+	float f_1 = findF(first);
+	first.setg(g_1);
+	first.seth(h_1);
+	first.setf(f_1);
 	to_visit.insert(first); //Add first node to list to visit
 
 	int MAX_ITER = num_grids * grid_size * grid_size;
 	int iter = 0;
-
+	cout << "here" << endl;
 	Node current;
 	while (to_visit.size() > 0) {
 		iter += 1;
