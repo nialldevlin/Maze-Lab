@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 #include "Pathfinder.h"
 #include "coord.h"
 #include "node.h"
@@ -224,4 +222,3 @@ bool Pathfinder::right(Node * pos) {
 	}
 	return false;
 }
->>>>>>> parent of 7538f1b (Update Pathfinder.cpp)
