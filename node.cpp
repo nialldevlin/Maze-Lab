@@ -1,8 +1,9 @@
 #include "node.h"
+#include <cmath> 
 
 Node::Node() {
 	position = new Coord();
-	parent_node = NULL;
+	parent_node = nullptr;
 	cost_g = 0.0;
 	cost_h = 0.0;
 	cost_f = 0.0;
@@ -10,7 +11,7 @@ Node::Node() {
 
 Node::Node(Coord pos) {
 	*position = pos;
-	parent_node = NULL;
+	parent_node = nullptr;
 	cost_g = 0.0;
 	cost_f = 0.0;
 	cost_h = 0.0;

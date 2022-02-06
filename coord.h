@@ -32,7 +32,7 @@ public:
 
 	float getDist(Coord other);
 
-	string str();
+	std::string str();
 
 	friend bool operator== (const Coord& c1, const Coord& c2);
 	friend bool operator!= (const Coord& c1, const Coord& c2);
