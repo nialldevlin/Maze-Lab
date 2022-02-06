@@ -1,6 +1,9 @@
 #include "coord.h"
 #include <string>
 #include <cmath>
+#include <sstream>
+
+using namespace std;
 
 Coord::Coord() {
 	x = 0;
@@ -102,15 +105,15 @@ float Coord::getDist(Coord other) {
 	return sqrt(xdiff * xdiff + ydiff * ydiff + zdiff * zdiff);
 }
 
-std::string Coord::str() {
-	std::string out = "(";
-	out.append(x);
-	out.append(", ");
-	out.append(y);
-	out.append(", ");
-	out.append(z);
-	out.append(")");
-	return out;
+string Coord::str() {
+	stringstream out("(");
+	out << x;
+	out << ", ";
+	out << y;
+	out << ", ";
+	out << z;
+	out << ")";
+	return out.str();
 }
 
 bool operator== (const Coord& c1, const Coord& c2) {
