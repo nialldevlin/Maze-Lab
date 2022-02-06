@@ -28,7 +28,7 @@ public:
 	void seth(int h);
 	void setf(int f);
 
-	Coord getPos();
+	Coord * getPos();
 	void setPos(Coord pos);
 
 	friend bool operator< (const Node& n1, const Node& n2);

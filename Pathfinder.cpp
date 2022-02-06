@@ -122,12 +122,12 @@ vector<string> Pathfinder::solveMaze() {
 		}
 
 		//Expand visit list to all neighbors
-		expandNode(current, &Pathfinder::up);
-		expandNode(current, &Pathfinder::down);
-		expandNode(current, &Pathfinder::forward);
-		expandNode(current, &Pathfinder::backward);
-		expandNode(current, &Pathfinder::left);
-		expandNode(current, &Pathfinder::right);
+		expandNode(current, &up);
+		expandNode(current, &down);
+		expandNode(current, &forward);
+		expandNode(current, &backward);
+		expandNode(current, &left);
+		expandNode(current, &right);
 	}
 	return vector<string>();
 }

@@ -61,7 +61,7 @@ void Node::setf(int f) {
 	cost_f = f;
 }
 
-Coord Node::getPos() {
+Coord * Node::getPos() {
 	return position;
 }
 
