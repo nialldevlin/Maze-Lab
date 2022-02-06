@@ -99,7 +99,6 @@ vector<string> Pathfinder::solveMaze() {
 
 	int MAX_ITER = num_grids * grid_size * grid_size;
 	int iter = 0;
-	cout << "here" << endl;
 	while (to_visit.size() > 0) {
 		iter += 1;
 		//Find element on visit list with lowest f value
@@ -107,7 +106,7 @@ vector<string> Pathfinder::solveMaze() {
 
 		to_visit.erase(current);
 		visited.insert(current);
-		cout << "here 2" << endl;
+		cout << "here0" << endl;
 		if (*(current.getPos()) == finalPos) {
 			return findPath(current);
 		}
@@ -115,6 +114,7 @@ vector<string> Pathfinder::solveMaze() {
 		if (iter > MAX_ITER) {
 			return vector<string>();
 		}
+		cout << "here1" << endl;
 
 		//Expand visit list to all neighbors
 		expandNode(current, &Pathfinder::up);
@@ -124,6 +124,7 @@ vector<string> Pathfinder::solveMaze() {
 		expandNode(current, &Pathfinder::left);
 		expandNode(current, &Pathfinder::right);
 	}
+	cout << "here2" << endl;
 	return vector<string>();
 }
 
