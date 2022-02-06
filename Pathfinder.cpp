@@ -95,6 +95,7 @@ vector<string> Pathfinder::solveMaze() {
 	Coord finalPos(num_grids - 1, grid_size - 1, grid_size - 1); //Goal position
 	curr_pos->set(0, 0, 0);
 	Node first(*curr_pos); //Initialize first node to start
+	cout << "solve" << endl;
 	float g_1 = findG(first);	//Initialize cost functions for first node
 	float h_1 = findH(first);
 	float f_1 = findF(first);
@@ -102,14 +103,12 @@ vector<string> Pathfinder::solveMaze() {
 	first.seth(h_1);
 	first.setf(f_1);
 	to_visit.insert(first); //Add first node to list to visit
-	cout << "solve" << endl;
 
 	int MAX_ITER = num_grids * grid_size * grid_size;
 	int iter = 0;
 
 	Node current;
 	while (to_visit.size() > 0) {
-		cout << "solve" << endl;
 		iter += 1;
 		//Find element on visit list with lowest f value
 		current = *min_element(to_visit.begin(), to_visit.end());
