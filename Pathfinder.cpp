@@ -141,7 +141,7 @@ void Pathfinder::expandNode(Node n, bool (Pathfinder::*direction)(Node*)) {
 	Coord finalPos(num_grids - 1, grid_size - 1, grid_size - 1); //Goal position
 	Node new_n = n;
 	cout << "here0" << endl;
-	bool works = (this->*direction)(new_n)
+	bool works = (this->*direction)(&new_n);
 	cout << "here1" << endl;
 	if (works && visited.find(new_n) == visited.end()) {
 		new_n.setParent(n);
