@@ -87,11 +87,8 @@ void parse_instruction(std::string temp, std::ofstream &ofs, Pathfinder* aptr) {
 		}
 	}
 	else if (command == "solveMaze") { // command to solve the maze and return a correct path if possible
-		std::cout << "solve" << std::endl;
 		std::string originalMaze = aptr->toString();
-		std::cout << "solve" << std::endl;
 		vector<std::string> pathVec = aptr->solveMaze(); // get the path vector returned by the student
-		std::cout << "solve" << std::endl;
 		if(originalMaze != aptr->toString()){
 			ofs << temp << "\nINVALID solution. Maze has been altered from: \n" << originalMaze
 				<< "\n...to: \n\n" << aptr->toString() << std::endl;
