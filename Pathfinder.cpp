@@ -42,6 +42,7 @@ void Pathfinder::createRandomMaze() {
 	for (auto& grid : *maze) {
 		for (auto line : grid) {
 			for (auto i : line) {
+				cout << "random maze" << endl;
 				int random = rand();
 				i = random % 2;
 			}
