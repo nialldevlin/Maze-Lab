@@ -139,7 +139,7 @@ void Pathfinder::expandNode(Node n, int direction) {
 	Coord finalPos(num_grids - 1, grid_size - 1, grid_size - 1); //Goal position
 	Node new_n = n;
 	bool not_fail;
-
+	cout << "here0" << endl;
 	switch (direction) {
 		case 0:
 			not_fail = up(&new_n);
@@ -161,7 +161,7 @@ void Pathfinder::expandNode(Node n, int direction) {
 			break;
 
 	}
-
+	cout << "here1" << endl;
 	if (not_fail && visited.find(new_n) == visited.end()) {
 		new_n.setParent(n);
 		new_n.setg();
@@ -169,6 +169,7 @@ void Pathfinder::expandNode(Node n, int direction) {
 		new_n.setf();
 		to_visit.insert(new_n);
 	}
+	cout << "here2" << endl;
 }
 
 bool Pathfinder::up(Node * pos) {
