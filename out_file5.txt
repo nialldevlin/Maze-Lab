@@ -1,5 +1,4 @@
-importMaze Mazes/Solvable1.txt True
-toString 
+createRandomMaze
      
      
      
@@ -31,8 +30,8 @@ toString
      
 
 
-importMaze Mazes/Solvable2.txt True
-toString
+Path: Unsolvable
+createRandomMaze
      
      
      
@@ -64,8 +63,8 @@ toString
      
 
 
-importMaze Mazes/Solvable3.txt True
-toString
+Path: Unsolvable
+createRandomMaze
      
      
      
@@ -97,8 +96,8 @@ toString
      
 
 
-importMaze Mazes/Unsolvable1.txt True
-toString
+Path: Unsolvable
+createRandomMaze
      
      
      
@@ -130,8 +129,8 @@ toString
      
 
 
-importMaze Mazes/Unsolvable2.txt True
-toString
+Path: Unsolvable
+createRandomMaze
      
      
      
@@ -163,8 +162,8 @@ toString
      
 
 
-importMaze Mazes/Unsolvable3.txt True
-toString
+Path: Unsolvable
+createRandomMaze
      
      
      
@@ -196,3 +195,136 @@ toString
      
 
 
+Path: Unsolvable
+createRandomMaze
+     
+     
+     
+     
+     
+
+     
+     
+     
+     
+     
+
+     
+     
+     
+     
+     
+
+     
+     
+     
+     
+     
+
+     
+     
+     
+     
+     
+
+
+Path: Unsolvable
+createRandomMaze
+     
+     
+     
+     
+     
+
+     
+     
+     
+     
+     
+
+     
+     
+     
+     
+     
+
+     
+     
+     
+     
+     
+
+     
+     
+     
+     
+     
+
+
+Path: Unsolvable
+createRandomMaze
+     
+     
+     
+     
+     
+
+     
+     
+     
+     
+     
+
+     
+     
+     
+     
+     
+
+     
+     
+     
+     
+     
+
+     
+     
+     
+     
+     
+
+
+Path: Unsolvable
+createRandomMaze
+     
+     
+     
+     
+     
+
+     
+     
+     
+     
+     
+
+     
+     
+     
+     
+     
+
+     
+     
+     
+     
+     
+
+     
+     
+     
+     
+     
+
+
+Path: Unsolvable

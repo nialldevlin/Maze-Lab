@@ -41,7 +41,6 @@ void Pathfinder::createRandomMaze() {
 	for (auto& grid : *maze) {
 		for (auto line : grid) {
 			for (auto i : line) {
-				cout << "random maze" << endl;
 				int random = rand();
 				i = random % 2;
 			}
@@ -91,7 +90,8 @@ bool Pathfinder::importMaze(string file_name) {
 vector<string> Pathfinder::solveMaze() {
 	//A*
 	Coord finalPos(num_grids - 1, grid_size - 1, grid_size - 1); //Goal position
-	Node current; //Initialize current node to start
+	Coord startPos(0, 0, 0);
+	Node current(startPos); //Initialize current node to start
 	current.setg(); //Initialize cost functions
 	current.seth(finalPos);
 	current.setf();
@@ -106,12 +106,13 @@ vector<string> Pathfinder::solveMaze() {
 
 		to_visit.erase(current);
 		visited.insert(current);
-		if (*(current.getPos()) == finalPos) {
+		if (current.getPos() == finalPos) {
 			return findPath(current);
 		}
 
 		if (iter > MAX_ITER) {
-			return vector<string>();
+			vector<string> out;
+            return out;
 		}
 
 		//Expand visit list to all neighbors
@@ -119,7 +120,6 @@ vector<string> Pathfinder::solveMaze() {
 			expandNode(current, i);
 		}
 	}
-	cout << "here" << endl;
 	vector<string> out;
 	return out;
 }
@@ -129,7 +129,7 @@ vector<string> Pathfinder::findPath(Node current) {
 	vector<string> path;
 	Node * curr = &current;
 	while (curr != nullptr) {
-		path.push_back(curr->getPos()->str());
+		path.push_back(curr->getPos().str());
 		curr = curr->getParent();
 	}
 	reverse(path.begin(), path.end());
@@ -142,33 +142,24 @@ void Pathfinder::expandNode(Node n, int direction) {
 	bool not_fail;
 	switch (direction) {
 		case 0:
-			cout << "here0" << endl;
 			not_fail = up(&new_n);
-			cout << "here0" << endl;
 			break;
 		case 1:
-			cout << "here1" << endl;
 			not_fail = down(&new_n);
 			break;
 		case 2:
-			cout << "here2" << endl;
 			not_fail = forward(&new_n);
 			break;
 		case 3:
-			cout << "here3" << endl;
 			not_fail = backward(&new_n);
 			break;
 		case 4:
-			cout << "here4" << endl;
 			not_fail = left(&new_n);
 			break;
 		case 5:
-			cout << "here5" << endl;
 			not_fail = right(&new_n);
 			break;
-
 	}
-	cout << "here12" << endl;
 	if (not_fail && visited.find(new_n) == visited.end()) {
 		new_n.setParent(n);
 		new_n.setg();
@@ -176,52 +167,53 @@ void Pathfinder::expandNode(Node n, int direction) {
 		new_n.setf();
 		to_visit.insert(new_n);
 	}
-	cout << "here12" << endl;
 }
 
 bool Pathfinder::up(Node * pos) {
-	if (pos->getPos()->getz() - 1 >= 0 && (*maze)[pos->getPos()->getz() - 1][pos->getPos()->gety()][pos->getPos()->getx()] == 1) {
-		pos->getPos()->decz();
-		return true;
+	if (pos->getPos().getz() - 1 >= 0) {
+        if ((*maze)[pos->getPos().getz() - 1][pos->getPos().gety()][pos->getPos().getx()] == 1) {
+            pos->getPos().decz();
+            return true;
+        }
 	}
 	return false;
 }
 
 bool Pathfinder::down(Node * pos) {
-	if (pos->getPos()->getz() + 1 < num_grids && (*maze)[pos->getPos()->getz() + 1][pos->getPos()->gety()][pos->getPos()->getx()] == 1) {
-		pos->getPos()->incz();
+	if (pos->getPos().getz() + 1 < num_grids && (*maze)[pos->getPos().getz() + 1][pos->getPos().gety()][pos->getPos().getx()] == 1) {
+		pos->getPos().incz();
 		return true;
 	}
 	return false;
 }
 
 bool Pathfinder::forward(Node * pos) {
-	if (pos->getPos()->gety() - 1 >= 0 && (*maze)[pos->getPos()->getz()][pos->getPos()->gety() - 1][pos->getPos()->getx()] == 1) {
-		pos->getPos()->decy();
+	if (pos->getPos().gety() - 1 >= 0 && (*maze)[pos->getPos().getz()][pos->getPos().gety() - 1][pos->getPos().getx()] == 1) {
+		pos->getPos().decy();
 		return true;
 	}
 	return false;
 }
 
 bool Pathfinder::backward(Node * pos) {
-	if (pos->getPos()->gety() + 1 < grid_size && (*maze)[pos->getPos()->getz()][pos->getPos()->gety() + 1][pos->getPos()->getx()] == 1) {
-		pos->getPos()->incy();
+	if (pos->getPos().gety() + 1 < grid_size && (*maze)[pos->getPos().getz()][pos->getPos().gety() + 1][pos->getPos().getx()] == 1) {
+		pos->getPos().incy();
 		return true;
 	}
 	return false;
 }
 
 bool Pathfinder::left(Node * pos) {
-	if (pos->getPos()->getx() - 1 >= 0 && (*maze)[pos->getPos()->getz()][pos->getPos()->gety()][pos->getPos()->getx() - 1] == 1) {
-		pos->getPos()->decx();
+	if (pos->getPos().getx() - 1 >= 0 && (*maze)[pos->getPos().getz()][pos->getPos().gety()][pos->getPos().getx() - 1] == 1) {
+		pos->getPos().decx();
 		return true;
 	}
 	return false;
 }
 
 bool Pathfinder::right(Node * pos) {
-	if (pos->getPos()->getx() + 1 < 5 && (*maze)[pos->getPos()->getz()][pos->getPos()->gety()][pos->getPos()->getx() + 1] == 1) {
-		pos->getPos()->incx();
+	if (pos->getPos().getx() + 1 < 5 && (*maze)[pos->getPos().getz()][pos->getPos().gety()][pos->getPos().getx() + 1] == 1) {
+		pos->getPos().incx();
 		return true;
 	}
 	return false;

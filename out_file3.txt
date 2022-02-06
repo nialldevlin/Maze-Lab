@@ -31,3 +31,72 @@ toString
      
 
 
+solveMaze Maze has no valid solution
+importMaze Mazes/Solvable2.txt True
+toString
+     
+     
+     
+     
+     
+
+     
+     
+     
+     
+     
+
+     
+     
+     
+     
+     
+
+     
+     
+     
+     
+     
+
+     
+     
+     
+     
+     
+
+
+solveMaze Maze has no valid solution
+importMaze Mazes/Solvable3.txt True
+toString
+     
+     
+     
+     
+     
+
+     
+     
+     
+     
+     
+
+     
+     
+     
+     
+     
+
+     
+     
+     
+     
+     
+
+     
+     
+     
+     
+     
+
+
+solveMaze Maze has no valid solution

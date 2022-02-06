@@ -1,0 +1,49 @@
+# depslib dependency file v1.0
+1644124442 source:c:\users\niall\onedrive - brigham young university\documents\cpp projects\maze-lab\main.cpp
+	<iostream>
+	<fstream>
+	<sstream>
+	<stdexcept>
+	"Pathfinder.h"
+
+1644122484 c:\users\niall\onedrive - brigham young university\documents\cpp projects\maze-lab\pathfinder.h
+	"PathfinderInterface.h"
+	"coord.h"
+	"node.h"
+	<vector>
+	<set>
+
+1643995327 c:\users\niall\onedrive - brigham young university\documents\cpp projects\maze-lab\pathfinderinterface.h
+	<iostream>
+	<string>
+	<vector>
+
+1644111373 c:\users\niall\onedrive - brigham young university\documents\cpp projects\maze-lab\coord.h
+	<string>
+
+1644126013 c:\users\niall\onedrive - brigham young university\documents\cpp projects\maze-lab\node.h
+	"coord.h"
+
+1644119881 source:c:\users\niall\onedrive - brigham young university\documents\cpp projects\maze-lab\coord.cpp
+	"coord.h"
+	<string>
+	<cmath>
+	<sstream>
+
+1644126008 source:c:\users\niall\onedrive - brigham young university\documents\cpp projects\maze-lab\node.cpp
+	"node.h"
+	<cmath>
+
+1644126604 source:c:\users\niall\onedrive - brigham young university\documents\cpp projects\maze-lab\pathfinder.cpp
+	"Pathfinder.h"
+	"coord.h"
+	"node.h"
+	<stdlib.h>
+	<time.h>
+	<fstream>
+	<sstream>
+	<vector>
+	<limits>
+	<set>
+	<algorithm>
+

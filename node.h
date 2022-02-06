@@ -6,15 +6,15 @@
 class Node{
 private:
 	Node * parent_node;
-	Coord * position;
+	Coord position;
 	float cost_g;
 	float cost_h;
 	float cost_f;
 
 public:
 	Node();
-	Node(Coord * pos);
-	Node(Coord * pos, Node parent);
+	Node(Coord pos);
+	Node(Coord pos, Node parent);
 	~Node();
 
 	Node * getParent();
@@ -28,7 +28,7 @@ public:
 	void seth(Coord finalpos);
 	void setf();
 
-	Coord * getPos();
+	Coord getPos();
 	void setPos(Coord pos);
 
 	friend bool operator< (const Node& n1, const Node& n2);

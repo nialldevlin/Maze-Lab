@@ -2,14 +2,13 @@
 #include <cmath>
 
 Node::Node() {
-	position = new Coord();
 	parent_node = nullptr;
 	cost_g = 0.0;
 	cost_h = 0.0;
 	cost_f = 0.0;
 }
 
-Node::Node(Coord * pos) {
+Node::Node(Coord pos) {
 	position = pos;
 	parent_node = nullptr;
 	cost_g = 0.0;
@@ -17,7 +16,7 @@ Node::Node(Coord * pos) {
 	cost_h = 0.0;
 }
 
-Node::Node(Coord * pos, Node parent) {
+Node::Node(Coord pos, Node parent) {
 	position = pos;
 	parent_node = &parent;
 	cost_g = 0.0;
@@ -26,8 +25,6 @@ Node::Node(Coord * pos, Node parent) {
 }
 
 Node::~Node(){
-	if (position)
-		delete position;
 	if (parent_node)
 		delete parent_node;
 }
@@ -61,19 +58,19 @@ void Node::setg() {
 }
 
 void Node::seth(Coord finalpos) {
-	cost_h = position->getDist(finalpos);
+	cost_h = position.getDist(finalpos);
 }
 
 void Node::setf() {
 	cost_f = cost_g + cost_h;
 }
 
-Coord * Node::getPos() {
+Coord Node::getPos() {
 	return position;
 }
 
 void Node::setPos(Coord pos) {
-	*position = pos;
+	position = pos;
 }
 
 bool operator< (const Node& n1, const Node& n2) {
