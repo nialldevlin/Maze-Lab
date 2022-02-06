@@ -129,7 +129,8 @@ vector<string> Pathfinder::solveMaze() {
 		expandNode(current, &Pathfinder::right);
 		cout << "7" << endl;
 	}
-	return vector<string>;
+	vector<string> out;
+	return out;
 }
 
 //Private functions
