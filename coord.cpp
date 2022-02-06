@@ -1,5 +1,6 @@
 #include "coord.h"
 #include <string>
+#include <cmath>
 
 Coord::Coord() {
 	x = 0;
