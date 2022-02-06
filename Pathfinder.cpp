@@ -91,7 +91,7 @@ bool Pathfinder::importMaze(string file_name) {
 vector<string> Pathfinder::solveMaze() {
 	//A*
 	Coord finalPos(num_grids - 1, grid_size - 1, grid_size - 1); //Goal position
-	Node current(); //Initialize current node to start
+	Node current; //Initialize current node to start
 	current.setg(); //Initialize cost functions
 	current.seth(finalPos);
 	current.setf();
