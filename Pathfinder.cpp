@@ -94,8 +94,9 @@ vector<string> Pathfinder::solveMaze() {
 	Coord finalPos(num_grids - 1, grid_size - 1, grid_size - 1); //Goal position
 	curr_pos->set(0, 0, 0);
 	Node first(*curr_pos); //Initialize first node to start
+	cout << "pre g" << endl;
 	float g_1 = findG(first);	//Initialize cost functions for first node
-	cout << "pre h" << endl;
+	cout << "g " << g_1 <<" pre h" << endl;
 	float h_1 = findH(first);
 	cout << "post h" << endl;
 	float f_1 = findF(first);
@@ -162,14 +163,13 @@ void Pathfinder::expandNode(Node n, bool (Pathfinder::*direction)(Node*)) {
 }
 
 float Pathfinder::findG(Node n) {
-	cout << "g1" << endl;
-	cout << (n.getParent() != nullptr) << endl;
+	cout << "g1" << n.getParent() << endl;
 	if (n.getParent() != nullptr) {
 		cout << "g2" << endl;
 		return n.getParent()->getg() + 1;
 	}
 	cout << "g3" << endl;
-	return 0;
+	return 0.0;
 }
 
 float Pathfinder::findH(Node n) {
