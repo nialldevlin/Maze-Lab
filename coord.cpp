@@ -106,7 +106,8 @@ float Coord::getDist(Coord other) {
 }
 
 string Coord::str() {
-	stringstream out("(");
+	stringstream out;
+	out << "(";
 	out << x;
 	out << ", ";
 	out << y;
