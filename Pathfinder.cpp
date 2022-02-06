@@ -146,7 +146,7 @@ vector<string> Pathfinder::findPath(Node current) {
 
 void Pathfinder::expandNode(Node n, bool (Pathfinder::*direction)(Node*)) {
 	Node new_n = n;
-	if (direction(new_n) && visited.find(new_n) == visited.end()) {
+	if (*direction(new_n) && visited.find(new_n) == visited.end()) {
 		new_n.setParent(n);
 		float g = findG(new_n);	//Initialize cost functions for node
 		float h = findH(new_n);
