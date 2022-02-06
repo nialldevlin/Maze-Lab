@@ -101,8 +101,12 @@ vector<string> Pathfinder::solveMaze() {
 	first.setf(f_1);
 	to_visit.insert(first); //Add first node to list to visit
 
+	int MAX_ITER = num_grids * grid_size * grid_size;
+	int iter = 0;
+
 	Node current;
 	while (to_visit.size() > 0) {
+		iter += 1;
 		//Find element on visit list with lowest f value
 		current = std::min_element(to_visit.begin(), to_visit.end());
 
@@ -110,7 +114,11 @@ vector<string> Pathfinder::solveMaze() {
 		visited.insert(current);
 
 		if (current.getPos() == finalPos) {
-			return findPath(current)
+			return findPath(current);
+		}
+
+		if (iter > MAX_ITER) {
+			return vector<string>();
 		}
 
 		//Expand visit list to all neighbors
@@ -121,8 +129,7 @@ vector<string> Pathfinder::solveMaze() {
 		expandNode(current, &Pathfinder::left);
 		expandNode(current, &Pathfinder::right);
 	}
-
-	return solved_string;
+	return vector<string>();
 }
 
 //Private functions
@@ -164,7 +171,7 @@ float Pathfinder::findH(Node n) {
 }
 
 float Pathfinder::findF(Node n) {
-	return g(n) + h(n);
+	return findG(n) + findH(n);
 }
 
 bool Pathfinder::up(Coord * pos) {

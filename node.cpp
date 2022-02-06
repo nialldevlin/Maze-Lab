@@ -69,6 +69,14 @@ void Node::setPos(Coord pos) {
 	*position = pos;
 }
 
-bool operator< (const Node& c1, const Node& n2) {
-    return c1.cost_f < c2.cost_f;
+bool operator< (const Node& n1, const Node& n2) {
+    return n1.cost_f < n2.cost_f;
+}
+
+bool operator== (const Node& n1, const Node& n2) {
+    return (abs(n1.cost_f - n1.cost_f) < 0.01);
+}
+
+bool operator!= (const Node& n1, const Node& n2) {
+    return (abs(n1.cost_f - n1.cost_f) >= 0.01);
 }

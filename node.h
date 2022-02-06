@@ -32,6 +32,8 @@ public:
 	void setPos(Coord pos);
 
 	friend bool operator< (const Node& n1, const Node& n2);
+	friend bool operator== (const Node& n1, const Node& n2);
+	friend bool operator!= (const Node& n1, const Node& n2);
 };
 
 #endif
