@@ -144,9 +144,9 @@ vector<string> Pathfinder::findPath(Node current) {
 	return path;
 }
 
-void Pathfinder::expandNode(Node n, bool (Pathfinder::*direction)(Node*)) {
+void Pathfinder::expandNode(Node n, static bool (*direction)(Node*)) {
 	Node new_n = n;
-	if (Pathfinder::direction(new_n) && visited.find(new_n) == visited.end()) {
+	if (direction(new_n) && visited.find(new_n) == visited.end()) {
 		new_n.setParent(n);
 		float g = findG(new_n);	//Initialize cost functions for node
 		float h = findH(new_n);
@@ -174,7 +174,7 @@ float Pathfinder::findF(Node n) {
 	return findG(n) + findH(n);
 }
 
-bool Pathfinder::up(Node * pos) {
+static bool Pathfinder::up(Node * pos) {
 	if (pos->getPos()->getz() - 1 >= 0 && (*maze)[pos->getPos()->getz() - 1][pos->getPos()->gety()][pos->getPos()->getx()] == 1) {
 		pos->getPos()->decz();
 		return true;
@@ -182,7 +182,7 @@ bool Pathfinder::up(Node * pos) {
 	return false;
 }
 
-bool Pathfinder::down(Node * pos) {
+static bool Pathfinder::down(Node * pos) {
 	if (pos->getPos()->getz() + 1 < num_grids && (*maze)[pos->getPos()->getz() + 1][pos->getPos()->gety()][pos->getPos()->getx()] == 1) {
 		pos->getPos()->incz();
 		return true;
@@ -190,7 +190,7 @@ bool Pathfinder::down(Node * pos) {
 	return false;
 }
 
-bool Pathfinder::forward(Node * pos) {
+static bool Pathfinder::forward(Node * pos) {
 	if (pos->getPos()->gety() - 1 >= 0 && (*maze)[pos->getPos()->getz()][pos->getPos()->gety() - 1][pos->getPos()->getx()] == 1) {
 		pos->getPos()->decy();
 		return true;
@@ -198,7 +198,7 @@ bool Pathfinder::forward(Node * pos) {
 	return false;
 }
 
-bool Pathfinder::backward(Node * pos) {
+static bool Pathfinder::backward(Node * pos) {
 	if (pos->getPos()->gety() + 1 < grid_size && (*maze)[pos->getPos()->getz()][pos->getPos()->gety() + 1][pos->getPos()->getx()] == 1) {
 		pos->getPos()->incy();
 		return true;
@@ -206,7 +206,7 @@ bool Pathfinder::backward(Node * pos) {
 	return false;
 }
 
-bool Pathfinder::left(Node * pos) {
+static bool Pathfinder::left(Node * pos) {
 	if (pos->getPos()->getx() - 1 >= 0 && (*maze)[pos->getPos()->getz()][pos->getPos()->gety()][pos->getPos()->getx() - 1] == 1) {
 		pos->getPos()->decx();
 		return true;
@@ -214,7 +214,7 @@ bool Pathfinder::left(Node * pos) {
 	return false;
 }
 
-bool Pathfinder::right(Node * pos) {
+static bool Pathfinder::right(Node * pos) {
 	if (pos->getPos()->getx() + 1 < 5 && (*maze)[pos->getPos()->getz()][pos->getPos()->gety()][pos->getPos()->getx() + 1] == 1) {
 		pos->getPos()->incx();
 		return true;
