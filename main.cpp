@@ -71,28 +71,26 @@ void parse_instruction(std::string temp, std::ofstream &ofs, Pathfinder* aptr) {
 		else {
 			ofs << temp << " False" << std::endl;
 		}
-		std::cout << "import 2" << std::endl;
 	}
 	else if (command == "toString") { // command to return the maze represented as a string
 		ofs << temp << "\n" << aptr->toString() << std::endl;
-		std::cout << "tostring 2" << std::endl;
 	}
 	else if (command == "createRandomMaze") { // command to create a random maze
 		stringstream ss;
 		aptr->createRandomMaze(); // create the maze
 		vector<std::string> pathVec = aptr->solveMaze(); // attempt to solve the maze;
-
 		if (pathVec.size() == 0) { // no valid path, maze is unsolvable
 			ofs << temp << "\n" << aptr->toString() << "\nPath: Unsolvable\n";
 		}
 		else {
 			ofs << temp << "\n" << aptr->toString() << std::endl << is_valid_path(pathVec, aptr->toString()) << std::endl; //<< ":\n" << ss.str() << std::endl;
 		}
-		std::cout << "random maze 3" << std::endl;
 	}
 	else if (command == "solveMaze") { // command to solve the maze and return a correct path if possible
+		std::cout << "solve" << std::endl;
 		std::string originalMaze = aptr->toString();
 		vector<std::string> pathVec = aptr->solveMaze(); // get the path vector returned by the student
+		std::cout << "solve" << std::endl;
 		if(originalMaze != aptr->toString()){
 			ofs << temp << "\nINVALID solution. Maze has been altered from: \n" << originalMaze
 				<< "\n...to: \n\n" << aptr->toString() << std::endl;
@@ -100,7 +98,7 @@ void parse_instruction(std::string temp, std::ofstream &ofs, Pathfinder* aptr) {
 		else{
 			ofs << temp << " " << is_valid_path(pathVec, aptr->toString()) << std::endl;
 		}
-		std::cout << "solve 4" << std::endl;
+		std::cout << "solve" << std::endl;
 	}
 	else { // invalid command, wrong input file format
 		std::cout << "Command: \"" << command << "\"" << std::endl;
