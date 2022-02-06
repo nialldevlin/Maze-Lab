@@ -115,14 +115,21 @@ vector<string> Pathfinder::solveMaze() {
 		}
 
 		//Expand visit list to all neighbors
+		cout << "1" << endl;
 		expandNode(current, &Pathfinder::up);
+		cout << "2" << endl;
 		expandNode(current, &Pathfinder::down);
+		cout << "3" << endl;
 		expandNode(current, &Pathfinder::forward);
+		cout << "4" << endl;
 		expandNode(current, &Pathfinder::backward);
+		cout << "5" << endl;
 		expandNode(current, &Pathfinder::left);
+		cout << "6" << endl;
 		expandNode(current, &Pathfinder::right);
+		cout << "7" << endl;
 	}
-	return vector<string>();
+	return vector<string>;
 }
 
 //Private functions
