@@ -19,12 +19,12 @@ private:
 	set<Node> to_visit; //Nodes to visit
 	Coord * curr_pos;
 	
-	static bool up(Node * pos);
-	static bool down(Node * pos);
-	static bool forward(Node * pos);
-	static bool backward(Node * pos);
-	static bool left(Node * pos);
-	static bool right(Node * pos);
+	bool up(Node * pos);
+	bool down(Node * pos);
+	bool forward(Node * pos);
+	bool backward(Node * pos);
+	bool left(Node * pos);
+	bool right(Node * pos);
 
 	float findG(Node n);
 	float findH(Node n);

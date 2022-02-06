@@ -174,7 +174,7 @@ float Pathfinder::findF(Node n) {
 	return findG(n) + findH(n);
 }
 
-static bool Pathfinder::up(Node * pos) {
+bool Pathfinder::up(Node * pos) {
 	if (pos->getPos()->getz() - 1 >= 0 && (*maze)[pos->getPos()->getz() - 1][pos->getPos()->gety()][pos->getPos()->getx()] == 1) {
 		pos->getPos()->decz();
 		return true;
@@ -182,7 +182,7 @@ static bool Pathfinder::up(Node * pos) {
 	return false;
 }
 
-static bool Pathfinder::down(Node * pos) {
+bool Pathfinder::down(Node * pos) {
 	if (pos->getPos()->getz() + 1 < num_grids && (*maze)[pos->getPos()->getz() + 1][pos->getPos()->gety()][pos->getPos()->getx()] == 1) {
 		pos->getPos()->incz();
 		return true;
@@ -190,7 +190,7 @@ static bool Pathfinder::down(Node * pos) {
 	return false;
 }
 
-static bool Pathfinder::forward(Node * pos) {
+bool Pathfinder::forward(Node * pos) {
 	if (pos->getPos()->gety() - 1 >= 0 && (*maze)[pos->getPos()->getz()][pos->getPos()->gety() - 1][pos->getPos()->getx()] == 1) {
 		pos->getPos()->decy();
 		return true;
@@ -198,7 +198,7 @@ static bool Pathfinder::forward(Node * pos) {
 	return false;
 }
 
-static bool Pathfinder::backward(Node * pos) {
+bool Pathfinder::backward(Node * pos) {
 	if (pos->getPos()->gety() + 1 < grid_size && (*maze)[pos->getPos()->getz()][pos->getPos()->gety() + 1][pos->getPos()->getx()] == 1) {
 		pos->getPos()->incy();
 		return true;
@@ -206,7 +206,7 @@ static bool Pathfinder::backward(Node * pos) {
 	return false;
 }
 
-static bool Pathfinder::left(Node * pos) {
+bool Pathfinder::left(Node * pos) {
 	if (pos->getPos()->getx() - 1 >= 0 && (*maze)[pos->getPos()->getz()][pos->getPos()->gety()][pos->getPos()->getx() - 1] == 1) {
 		pos->getPos()->decx();
 		return true;
@@ -214,7 +214,7 @@ static bool Pathfinder::left(Node * pos) {
 	return false;
 }
 
-static bool Pathfinder::right(Node * pos) {
+bool Pathfinder::right(Node * pos) {
 	if (pos->getPos()->getx() + 1 < 5 && (*maze)[pos->getPos()->getz()][pos->getPos()->gety()][pos->getPos()->getx() + 1] == 1) {
 		pos->getPos()->incx();
 		return true;
