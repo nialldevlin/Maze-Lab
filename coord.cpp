@@ -103,7 +103,14 @@ float Coord::getDist(Coord other) {
 }
 
 std::string Coord::str() {
-	return "(" + x + ", " + y + ", " + z + ")";
+	std::string out = "(";
+	out.append(x);
+	out.append(", ");
+	out.append(y);
+	out.append(", ");
+	out.append(z);
+	out.append(")");
+	return out;
 }
 
 bool operator== (const Coord& c1, const Coord& c2) {
