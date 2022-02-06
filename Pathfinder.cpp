@@ -73,9 +73,6 @@ bool Pathfinder::importMaze(string file_name) {
 	if (vals.size() < num_grids * grid_size * grid_size) {
 		return false;
 	}
-	if (abs(zeroes - ones) >= 40) {
-        return false;
-	}
 	int index = 0;
 	for (int i = 0; i < (*maze).size(); i++) {
 		for (int j = 0; j < (*maze)[0].size(); j++) {

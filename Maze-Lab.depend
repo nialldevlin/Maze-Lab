@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1644129383 source:c:\users\niall\onedrive - brigham young university\documents\cpp projects\maze-lab\main.cpp
+1644131439 source:c:\users\niall\onedrive - brigham young university\documents\cpp projects\maze-lab\main.cpp
 	<iostream>
 	<fstream>
 	<sstream>
@@ -34,7 +34,7 @@
 	"node.h"
 	<cmath>
 
-1644129363 source:c:\users\niall\onedrive - brigham young university\documents\cpp projects\maze-lab\pathfinder.cpp
+1644130358 source:c:\users\niall\onedrive - brigham young university\documents\cpp projects\maze-lab\pathfinder.cpp
 	"Pathfinder.h"
 	"coord.h"
 	"node.h"
@@ -46,4 +46,5 @@
 	<limits>
 	<set>
 	<algorithm>
+	<cmath>
 
