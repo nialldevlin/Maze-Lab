@@ -95,7 +95,7 @@ vector<string> Pathfinder::solveMaze() {
 	//A*
 	Coord finalPos(num_grids - 1, grid_size - 1, grid_size - 1); //Goal position
 	curr_pos->set(0, 0, 0);
-	cout << curr_pos << endl;
+	cout << curr_pos->str() << endl;
 	Node first(curr_pos); //Initialize first node to start
 	/*float g_1 = findG(first);	//Initialize cost functions for first node
 	float h_1 = findH(first);
