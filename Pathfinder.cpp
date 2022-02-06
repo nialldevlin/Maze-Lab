@@ -140,15 +140,15 @@ vector<string> Pathfinder::findPath(Node current) {
 void Pathfinder::expandNode(Node n, bool (Pathfinder::*direction)(Node*)) {
 	Coord finalPos(num_grids - 1, grid_size - 1, grid_size - 1); //Goal position
 	Node new_n = n;
-	if ((this->*direction)(&new_n) && visited.find(new_n) == visited.end()) {
-		cout << "here0" << endl;
+	cout << "here0" << endl;
+	bool works = (this->*direction)(new_n)
+	cout << "here1" << endl;
+	if (works && visited.find(new_n) == visited.end()) {
 		new_n.setParent(n);
 		new_n.setg();
 		new_n.seth(finalPos);
 		new_n.setf();
-		cout << "here1" << endl;
 		to_visit.insert(new_n);
-		cout << "here2" << endl;
 	}
 }
 
