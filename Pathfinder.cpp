@@ -122,12 +122,12 @@ vector<string> Pathfinder::solveMaze() {
 		}
 
 		//Expand visit list to all neighbors
-		expandNode(current, &up);
-		expandNode(current, &down);
-		expandNode(current, &forward);
-		expandNode(current, &backward);
-		expandNode(current, &left);
-		expandNode(current, &right);
+		expandNode(current, &Pathfinder::up);
+		expandNode(current, &Pathfinder::down);
+		expandNode(current, &Pathfinder::forward);
+		expandNode(current, &Pathfinder::backward);
+		expandNode(current, &Pathfinder::left);
+		expandNode(current, &Pathfinder::right);
 	}
 	return vector<string>();
 }
@@ -137,14 +137,14 @@ vector<string> Pathfinder::findPath(Node current) {
 	vector<string> path;
 	Node * curr = &current;
 	while (curr != NULL) {
-		path.push_back(*(curr->getPos()).str());
+		path.push_back(curr->getPos()->str());
 		curr = curr->getParent();
 	}
 	reverse(path.begin(), path.end());
 	return path;
 }
 
-void Pathfinder::expandNode(Node n, bool (Pathfinder::*direction)(Coord*)) {
+void Pathfinder::expandNode(Node n, bool (Pathfinder::*direction)(Node*)) {
 	Node new_n = n;
 	if (direction(new_n) && visited.find(new_n) == visited.end()) {
 		new_n.setParent(n);

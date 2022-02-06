@@ -19,18 +19,18 @@ private:
 	set<Node> to_visit; //Nodes to visit
 	Coord * curr_pos;
 	
-	bool up(Coord * pos);
-	bool down(Coord * pos);
-	bool forward(Coord * pos);
-	bool backward(Coord * pos);
-	bool left(Coord * pos);
-	bool right(Coord * pos);
+	bool up(Node * pos);
+	bool down(Node * pos);
+	bool forward(Node * pos);
+	bool backward(Node * pos);
+	bool left(Node * pos);
+	bool right(Node * pos);
 
 	float findG(Node n);
 	float findH(Node n);
 	float findF(Node n);
 
-	void expandNode(Node n, bool (Pathfinder::*direction)(Coord*));
+	void expandNode(Node n, bool (Pathfinder::*direction)(Node*));
 	vector<string> findPath(Node current);
 
 public:
