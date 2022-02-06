@@ -161,6 +161,7 @@ void Pathfinder::expandNode(Node n, bool (Pathfinder::*direction)(Node*)) {
 
 float Pathfinder::findG(Node n) {
 	cout << "g1" << endl;
+	cout << n.getParent() != NULL << endl;
 	if (n.getParent() != NULL) {
 		cout << "g2" << endl;
 		return n.getParent()->getg() + 1;
