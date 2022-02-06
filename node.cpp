@@ -26,8 +26,10 @@ Node::Node(Coord pos, Node parent) {
 }
 
 Node::~Node(){
-	delete position;
-	delete parent_node;
+	if (position)
+		delete position;
+	if (parent_node)
+		delete parent_node;
 }
 
 Node * Node::getParent() {

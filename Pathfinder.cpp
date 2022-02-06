@@ -19,8 +19,10 @@ Pathfinder::Pathfinder() {
 }
 
 Pathfinder::~Pathfinder() {
-	delete maze;
-	delete curr_pos;
+	if (maze)
+		delete maze;
+	if (curr_pos)
+		delete curr_pos;
 }
 
 string Pathfinder::toString() const {
@@ -163,7 +165,7 @@ void Pathfinder::expandNode(Node n, bool (Pathfinder::*direction)(Node*)) {
 }
 
 float Pathfinder::findG(Node n) {
-	cout << "g1" << n.getParent() << endl;
+	cout << "g1 " << n.getParent() << endl;
 	if (n.getParent() != nullptr) {
 		cout << "g2" << endl;
 		return n.getParent()->getg() + 1;
