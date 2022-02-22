@@ -140,13 +140,11 @@ bool Pathfinder::importMaze(string file_name) {
 
 		}
 	}
-	if (vals.size() != NUM_GRIDS * GRID_SIZE * GRID_SIZE) {
-		return false;
-	}
-	cout << abs(zeroes - ones) << endl;
+	if (vals.size() != NUM_GRIDS * GRID_SIZE * GRID_SIZE) return false;
+	/*cout << abs(zeroes - ones) << endl;
 	if (abs(zeroes - ones) > 100) {
         return false;
-	}
+	}*/
 	clear();
 	int index = 0;
 	for (int i = 0; i < (*maze).size(); i++) {
@@ -157,6 +155,7 @@ bool Pathfinder::importMaze(string file_name) {
 			}
 		}
 	}
+	if ((*maze)[0][0][0] == 0 || (*maze)[NUM_GRIDS - 1][GRID_SIZE - 1][GRID_SIZE - 1] == 1) return false;
 	return true;
 }
 
