@@ -155,7 +155,7 @@ bool Pathfinder::importMaze(string file_name) {
 			}
 		}
 	}
-	if ((*maze)[0][0][0] == 0 || (*maze)[NUM_GRIDS - 1][GRID_SIZE - 1][GRID_SIZE - 1] == 1) return false;
+	if ((*maze)[0][0][0] == 0 || (*maze)[NUM_GRIDS - 1][GRID_SIZE - 1][GRID_SIZE - 1] == 0) return false;
 	return true;
 }
 
