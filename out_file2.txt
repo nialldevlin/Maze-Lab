@@ -61,7 +61,7 @@ toString
 1 1 1 1 1
 1 1 1 1 1
 
-importMaze Mazes/Solvable1.txt True
+importMaze Mazes/Solvable1.txt False
 toString
 1 1 0 1 0
 0 0 0 1 0
@@ -125,7 +125,7 @@ toString
 0 0 0 0 0
 1 1 1 1 1
 
-importMaze Mazes/Invalid3.txt False
+importMaze Mazes/Invalid3.txt True
 importMaze Mazes/Invalid4.txt False
 importMaze Mazes/Invalid5.txt False
 importMaze Mazes/Nonexistant.txt False

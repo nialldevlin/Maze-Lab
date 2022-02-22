@@ -1,111 +1,18 @@
 out_file1.txt
+importMaze Mazes/Solvable1.txt True			      |	importMaze Mazes/Solvable1.txt False
+importMaze Mazes/Solvable2.txt True			      |	importMaze Mazes/Solvable2.txt False
 importMaze Mazes/Solvable3.txt True			      |	importMaze Mazes/Solvable3.txt False
-1 1 1 1 1						      |	1 0 1 1 1
-1 1 1 1 1						      |	1 1 1 1 0
-1 1 1 1 1						      |	0 1 0 0 1
-1 1 1 1 1						      |	0 1 1 0 0
-1 1 1 1 1						      |	0 0 0 0 1
-							      |
-1 1 1 1 1						      |	1 0 1 0 0
-1 1 1 1 1						      |	1 0 1 0 0
-1 1 1 1 1						      |	1 0 0 0 1
-1 1 1 1 1						      |	1 0 0 1 1
-1 1 1 1 1						      |	0 0 1 1 1
-							      |
-1 1 1 1 1						      |	1 1 0 0 0
-1 1 1 1 1						      |	0 1 0 0 1
-1 1 1 1 1						      |	1 0 0 0 0
-1 1 1 1 1						      |	0 0 0 1 1
-1 1 1 1 1						      |	0 1 1 0 0
-							      |
-1 1 1 1 1						      |	0 1 1 1 0
-1 1 1 1 1						      |	1 1 0 1 1
-1 1 1 1 1						      |	0 1 0 1 1
-1 1 1 1 1						      |	0 0 1 0 0
-1 1 1 1 1						      |	0 1 0 1 1
-							      |
-1 1 1 1 1						      |	0 0 1 1 0
-1 1 1 1 1						      |	0 0 0 0 0
-1 1 1 1 1						      |	0 1 1 0 1
-1 1 1 1 1						      |	0 1 1 1 0
-1 1 1 1 1						      |	0 1 1 1 1
+importMaze Mazes/Unsolvable1.txt True			      |	importMaze Mazes/Unsolvable1.txt False
+importMaze Mazes/Unsolvable2.txt True			      |	importMaze Mazes/Unsolvable2.txt False
 importMaze Mazes/Unsolvable3.txt True			      |	importMaze Mazes/Unsolvable3.txt False
-1 1 1 1 1						      |	1 0 1 1 1
-1 1 1 1 1						      <
-1 1 1 1 1						      <
-1 1 1 1 1						      <
-1 1 1 1 1						      <
-							      <
-1 1 1 1 1						      <
-1 1 1 1 1						      <
-1 1 1 1 1						      <
-1 1 1 1 1						      <
-1 1 1 1 1						      <
-							      <
-1 1 1 1 1						      <
-1 1 1 1 1						      <
-1 1 1 1 1						      <
-1 1 1 1 1						      <
-1 1 1 1 1						      <
-							      <
-1 1 1 1 1						      <
-1 1 1 1 1						      <
-1 1 1 1 1						      <
-1 1 1 1 1						      <
-							      >	0 1 0 0 1
-							      >	0 1 1 0 0
-							      >	0 0 0 0 1
-1 1 1 1 1						      |	1 0 1 0 0
-1 1 1 1 1						      |	1 0 1 0 0
-1 1 1 1 1						      |	1 0 0 0 1
-1 1 1 1 0						      |	1 0 0 1 1
-1 1 1 0 1						      |	0 0 1 1 1
-							      >
-							      >	1 1 0 0 0
-							      >	0 1 0 0 1
-							      >	1 0 0 0 0
-							      >	0 0 0 1 1
-							      >	0 1 1 0 0
-							      >
-							      >	0 1 1 1 0
-							      >	1 1 0 1 1
-							      >	0 1 0 1 1
-							      >	0 0 1 0 0
-							      >	0 1 0 1 1
-							      >
-							      >	0 0 1 1 0
-							      >	0 0 0 0 0
-							      >	0 1 1 0 1
-							      >	0 1 1 1 0
-							      >	0 1 1 0 1
 out_file2.txt
+importMaze Mazes/Solvable1.txt True			      |	importMaze Mazes/Solvable1.txt False
+importMaze Mazes/Invalid3.txt False			      |	importMaze Mazes/Invalid3.txt True
 out_file3.txt
+importMaze Mazes/Solvable1.txt True			      |	importMaze Mazes/Solvable1.txt False
+importMaze Mazes/Solvable2.txt True			      |	importMaze Mazes/Solvable2.txt False
 importMaze Mazes/Solvable3.txt True			      |	importMaze Mazes/Solvable3.txt False
-1 1 1 1 1						      |	1 0 1 1 1
-1 1 1 1 1						      |	1 1 1 1 0
-1 1 1 1 1						      |	0 1 0 0 1
-1 1 1 1 1						      |	0 1 1 0 0
-1 1 1 1 1						      |	0 0 0 0 1
-1 1 1 1 1						      |	1 0 1 0 0
-1 1 1 1 1						      |	1 0 1 0 0
-1 1 1 1 1						      |	1 0 0 0 1
-1 1 1 1 1						      |	1 0 0 1 1
-1 1 1 1 1						      |	0 0 1 1 1
-1 1 1 1 1						      |	1 1 0 0 0
-1 1 1 1 1						      |	0 1 0 0 1
-1 1 1 1 1						      |	1 0 0 0 0
-1 1 1 1 1						      |	0 0 0 1 1
-1 1 1 1 1						      |	0 1 1 0 0
-1 1 1 1 1						      |	0 1 1 1 0
-1 1 1 1 1						      |	1 1 0 1 1
-1 1 1 1 1						      |	0 1 0 1 1
-1 1 1 1 1						      |	0 0 1 0 0
-1 1 1 1 1						      |	0 1 0 1 1
-1 1 1 1 1						      |	0 0 1 1 0
-1 1 1 1 1						      |	0 0 0 0 0
-1 1 1 1 1						      |	0 1 1 0 1
-1 1 1 1 1						      |	0 1 1 1 0
-1 1 1 1 1						      |	0 1 1 1 1
-solveMaze VALID solution given				      |	solveMaze Maze has no valid solution
 out_file4.txt
+importMaze Mazes/Unsolvable1.txt True			      |	importMaze Mazes/Unsolvable1.txt False
+importMaze Mazes/Unsolvable2.txt True			      |	importMaze Mazes/Unsolvable2.txt False
 importMaze Mazes/Unsolvable3.txt True			      |	importMaze Mazes/Unsolvable3.txt False

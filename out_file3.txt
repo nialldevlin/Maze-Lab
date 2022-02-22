@@ -1,4 +1,4 @@
-importMaze Mazes/Solvable1.txt True
+importMaze Mazes/Solvable1.txt False
 toString
 1 1 0 1 0
 0 0 0 1 0
@@ -31,7 +31,7 @@ toString
 1 1 1 1 1
 
 solveMaze VALID solution given
-importMaze Mazes/Solvable2.txt True
+importMaze Mazes/Solvable2.txt False
 toString
 1 0 1 1 1
 1 1 1 1 0
@@ -66,34 +66,34 @@ toString
 solveMaze VALID solution given
 importMaze Mazes/Solvable3.txt False
 toString
-1 0 1 1 1
-1 1 1 1 0
-0 1 0 0 1
-0 1 1 0 0
-0 0 0 0 1
+1 1 1 1 1
+1 1 1 1 1
+1 1 1 1 1
+1 1 1 1 1
+1 1 1 1 1
 
-1 0 1 0 0
-1 0 1 0 0
-1 0 0 0 1
-1 0 0 1 1
-0 0 1 1 1
+1 1 1 1 1
+1 1 1 1 1
+1 1 1 1 1
+1 1 1 1 1
+1 1 1 1 1
 
-1 1 0 0 0
-0 1 0 0 1
-1 0 0 0 0
-0 0 0 1 1
-0 1 1 0 0
+1 1 1 1 1
+1 1 1 1 1
+1 1 1 1 1
+1 1 1 1 1
+1 1 1 1 1
 
-0 1 1 1 0
-1 1 0 1 1
-0 1 0 1 1
-0 0 1 0 0
-0 1 0 1 1
+1 1 1 1 1
+1 1 1 1 1
+1 1 1 1 1
+1 1 1 1 1
+1 1 1 1 1
 
-0 0 1 1 0
-0 0 0 0 0
-0 1 1 0 1
-0 1 1 1 0
-0 1 1 1 1
+1 1 1 1 1
+1 1 1 1 1
+1 1 1 1 1
+1 1 1 1 1
+1 1 1 1 1
 
-solveMaze Maze has no valid solution
+solveMaze VALID solution given
