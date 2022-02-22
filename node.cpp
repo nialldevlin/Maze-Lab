@@ -25,27 +25,26 @@ Node::Node(Coord pos, Node parent) {
 }
 
 Node::~Node(){
-	if (parent_node)
-		delete parent_node;
+	parent_node = nullptr;
 }
 
 Node * Node::getParent() {
 	return parent_node;
 }
 
-void Node::setParent(Node parent) {
-	parent_node = &parent;
+void Node::setParent(Node * parent) {
+	parent_node = parent;
 }
 
-int Node::getg() {
+float Node::getg() {
 	return cost_g;
 }
 
-int Node::geth() {
+float Node::geth() {
 	return cost_h;
 }
 
-int Node::getf() {
+float Node::getf() {
 	return cost_f;
 }
 
@@ -78,9 +77,5 @@ bool operator< (const Node& n1, const Node& n2) {
 }
 
 bool operator== (const Node& n1, const Node& n2) {
-    return (abs(n1.cost_f - n1.cost_f) < 0.01);
-}
-
-bool operator!= (const Node& n1, const Node& n2) {
-    return (abs(n1.cost_f - n1.cost_f) >= 0.01);
+    return n1.position == n2.position;
 }

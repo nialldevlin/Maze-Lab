@@ -44,6 +44,7 @@ int main() {
 
 		std::cout << "Beginning out_file" << i + 1 << ".txt write" << std::endl;
 		while (ta::getline(ifs, temp)) { // while there are more instructions to get,
+		    //std::cout << temp << std::endl;
 			parse_instruction(temp, ofs, pathptr); // parse the instructions using the Pathfinder
 		}
 		std::cout << "File write complete" << std::endl << std::endl;

@@ -13,9 +13,17 @@
 
 using namespace std;
 
+const Coord Pathfinder::finalPos = Coord(NUM_GRIDS - 1, GRID_SIZE - 1, GRID_SIZE - 1);
+const Coord Pathfinder::startPos = Coord(0, 0, 0);
+
 Pathfinder::Pathfinder() {
-	maze = new vector<vector<vector<bool>>> (num_grids, vector<vector<bool>>(grid_size, vector<bool>(grid_size, 1)));
+	maze = new vector<vector<vector<bool>>> (NUM_GRIDS, vector<vector<bool>>(GRID_SIZE, vector<bool>(GRID_SIZE, 1)));
 	srand(time(NULL));
+	Node start(startPos);
+    start.setg();
+    start.seth(finalPos);
+    start.setf();
+    current_path.push_front(start);
 }
 
 Pathfinder::~Pathfinder() {
@@ -23,15 +31,58 @@ Pathfinder::~Pathfinder() {
 		delete maze;
 }
 
+string Pathfinder::toString(vector<vector<vector<short>>> m) const {
+	stringstream ss;
+	string separator = "";
+	for (int i = 0; i < m.size(); i++) {
+		for (int j = 0; j < m[0].size(); j++) {
+			for (int k = 0; k < m[0][0].size(); k++) {
+				ss << separator << m[i][j][k];
+				separator = " ";
+			}
+			separator = "";
+			ss << endl;
+		}
+		ss << "\n";
+	}
+	string outstr = ss.str();
+	outstr.pop_back();
+	return outstr;
+}
+
+string Pathfinder::result() {
+    vector<vector<vector<bool>>> m = *maze;
+	stringstream ss;
+	string separator = "";
+	for (int i = 0; i < m.size(); i++) {
+		for (int j = 0; j < m[0].size(); j++) {
+			for (int k = 0; k < m[0][0].size(); k++) {
+                int value;
+                if (inPath(Coord(i, j, k))) {
+                    ss << separator << 'x';
+                } else {
+                    ss << separator << m[i][j][k];
+                }
+                separator = " ";
+			}
+			separator = "";
+			ss << endl;
+		}
+		ss << endl;
+	}
+	string outstr = ss.str();
+	outstr.pop_back();
+	return outstr;
+}
+
 string Pathfinder::toString() const {
 	stringstream ss;
 	string separator = "";
 	for (int i = 0; i < (*maze).size(); i++) {
 		for (int j = 0; j < (*maze)[0].size(); j++) {
-			for (int k = 0; k < (*maze)[0].size(); k++) {
+			for (int k = 0; k < (*maze)[0][0].size(); k++) {
 				ss << separator << (*maze)[i][j][k];
 				separator = " ";
-
 			}
 			separator = "";
 			ss << endl;
@@ -44,6 +95,7 @@ string Pathfinder::toString() const {
 }
 
 void Pathfinder::createRandomMaze() {
+    clear();
 	for (int i = 0; i < (*maze).size(); i++) {
 		for (int j = 0; j < (*maze)[0].size(); j++) {
 			for (int k = 0; k < (*maze)[0].size(); k++) {
@@ -52,17 +104,21 @@ void Pathfinder::createRandomMaze() {
 		}
 	}
 	(*maze)[0][0][0] = 1;
-	(*maze)[num_grids - 1][grid_size - 1][grid_size - 1] = 1;
+	(*maze)[NUM_GRIDS - 1][GRID_SIZE - 1][GRID_SIZE - 1] = 1;
 }
 
 bool Pathfinder::importMaze(string file_name) {
+    clear();
 	ifstream ifs;
 	ifs.open(file_name);
+	cout << file_name << endl;
 	if (!ifs.is_open()) {
+
 		return false;
 	}
 	string line;
 	vector<bool> vals;
+
 	int ones = 0;
 	int zeroes = 0;
 	while (ifs >> line) {
@@ -85,140 +141,242 @@ bool Pathfinder::importMaze(string file_name) {
 			}
 		}
 	}
-    if (vals.size() < num_grids * grid_size * grid_size) {
+    if (vals.size() < NUM_GRIDS * GRID_SIZE * GRID_SIZE) {
 		return false;
 	}
 	return true;
 }
 
 vector<string> Pathfinder::solveMaze() {
-	//A*
-	Coord finalPos(num_grids - 1, grid_size - 1, grid_size - 1); //Goal position
-	Coord startPos(0, 0, 0);
-	Node current(startPos); //Initialize current node to start
-	current.setg(); //Initialize cost functions
-	current.seth(finalPos);
-	current.setf();
-	to_visit.insert(current); //Add first node to list to visit
+    if (current_path.empty()) {
+        vector<string> out;
+        return out;
+    }
+    current = &current_path.front();
+    Coord currPos = current->getPos();
+    if (currPos == finalPos) {
+        return findPath();
+    }
 
-	int MAX_ITER = num_grids * grid_size * grid_size;
-	int iter = 0;
-	while (to_visit.size() > 0) {
-		iter += 1;
-		//Find element on visit list with lowest f value
-		current = *to_visit.begin();
+    set<Node> neighbors;
+    //Create Node for each neighbor
+    up(current, &neighbors);
+    down(current, &neighbors);
+    forwd(current, &neighbors);
+    backward(current, &neighbors);
+    left(current, &neighbors);
+    right(current, &neighbors);
 
-		to_visit.erase(current);
-		visited.insert(current);
-		if (current.getPos() == finalPos) {
-			return findPath(current);
-		}
+    if (neighbors.empty()) {
 
-		if (iter > MAX_ITER) {
-			vector<string> out;
-            return out;
-		}
-
-		//Expand visit list to all neighbors
-		for (int i = 0; i < 6; i++) {
-			expandNode(current, i);
-		}
-	}
-	vector<string> out;
-	return out;
+        //Reached end of branch
+        Node n = *current;
+        bad_nodes.push_back(n);
+        current = current->getParent();
+        current_path.pop_front();
+        return solveMaze();
+    }
+    //Get option with lowest F
+    Node next = *neighbors.begin();
+    current_path.push_front(next);
+    return solveMaze();
 }
 
 //Private functions
-vector<string> Pathfinder::findPath(Node current) {
-	vector<string> path;
-	Node * curr = &current;
-	while (curr != nullptr) {
-		path.push_back(curr->getPos().str());
-		curr = curr->getParent();
-	}
-	reverse(path.begin(), path.end());
-	return path;
+vector<string> Pathfinder::findPath() {
+    //cout << toString() << endl << result() << endl;
+    vector<string> out_path;
+    while (!current_path.empty()) {
+        string o = current_path.back().getPos().str();
+        out_path.push_back(o);
+        current_path.pop_back();
+    }
+	return out_path;
 }
 
-void Pathfinder::expandNode(Node n, int direction) {
-	Coord finalPos(num_grids - 1, grid_size - 1, grid_size - 1); //Goal position
-	Node new_n = n;
-	bool not_fail;
-	switch (direction) {
-		case 0:
-			not_fail = up(&new_n);
-			break;
-		case 1:
-			not_fail = down(&new_n);
-			break;
-		case 2:
-			not_fail = forward(&new_n);
-			break;
-		case 3:
-			not_fail = backward(&new_n);
-			break;
-		case 4:
-			not_fail = left(&new_n);
-			break;
-		case 5:
-			not_fail = right(&new_n);
-			break;
+bool Pathfinder::up(Node * pos, set<Node> *n) {
+    //Copy Node
+    Node out = *pos;
+    //Move down
+    Coord c = out.getPos();
+    int newz = c.getz() - 1;
+    c.setz(newz);
+    //Set new position
+    out.setPos(c);
+    //Check if in bounds and not already on the path and not a wall and not a bad Node
+	if ( c.getz() >= 0 &&
+         maze->at(c.getz()).at(c.gety()).at(c.getx()) &&
+         !inPath(c) && !badNode(out) ) {
+        //Set parent to previous Node
+        out.setParent(pos);
+        //Set heuristic functions
+        out.setg();
+        out.seth(finalPos);
+        out.setf();
+        //Add to neighbors list
+        n->insert(out);
+        return true;
 	}
-	if (not_fail && visited.find(new_n) == visited.end()) {
-		new_n.setParent(n);
-		new_n.setg();
-		new_n.seth(finalPos);
-		new_n.setf();
-		to_visit.insert(new_n);
-	}
+	//Return false if not added
+	return false;
 }
 
-bool Pathfinder::up(Node * pos) {
-	if (pos->getPos().getz() - 1 >= 0) {
-        if ((*maze)[pos->getPos().getz() - 1][pos->getPos().gety()][pos->getPos().getx()] == 1) {
-            pos->getPos().decz();
+bool Pathfinder::down(Node * pos, set<Node> *n) {
+    //Copy Node
+    Node out = *pos;
+    //Move down
+    Coord c = out.getPos();
+    int newz = c.getz() + 1;
+    c.setz(newz);
+    //Set new position
+    out.setPos(c);
+    //Check if in bounds and not already on the path and not a wall and not a bad Node
+	if ( c.getz() < NUM_GRIDS &&
+         maze->at(c.getz()).at(c.gety()).at(c.getx()) &&
+         !inPath(c) && !badNode(out) ) {
+        //Set parent to previous Node
+        out.setParent(pos);
+        //Set heuristic functions
+        out.setg();
+        out.seth(finalPos);
+        out.setf();
+        //Add to neighbors list
+        n->insert(out);
+        return true;
+    }
+	//Return false if not added
+	return false;
+}
+
+bool Pathfinder::forwd(Node * pos, set<Node> *n) {
+    //Copy Node
+    Node out = *pos;
+    //Move down
+    Coord c = out.getPos();
+    int newy = c.gety() - 1;
+    c.sety(newy);
+    //Set new position
+    out.setPos(c);
+    //Check if in bounds and not already on the path and not a wall and not a bad Node
+	if ( c.gety() >= 0 &&
+         maze->at(c.getz()).at(c.gety()).at(c.getx()) &&
+         !inPath(c) && !badNode(out) ) {
+        //Set parent to previous Node
+        out.setParent(pos);
+        //Set heuristic functions
+        out.setg();
+        out.seth(finalPos);
+        out.setf();
+        //Add to neighbors list
+        n->insert(out);
+        return true;
+	}
+	//Return false if not added
+	return false;
+}
+
+bool Pathfinder::backward(Node * pos, set<Node> *n) {
+    //Copy Node
+    Node out = *pos;
+    //Move down
+    Coord c = out.getPos();
+    int newy = c.gety() + 1;
+    c.sety(newy);
+    //Set new position
+    out.setPos(c);
+    //Check if in bounds and not already on the path and not a wall and not a bad Node
+	if ( c.gety() < GRID_SIZE &&
+         maze->at(c.getz()).at(c.gety()).at(c.getx()) &&
+         !inPath(c) && !badNode(out) ) {
+        //Set parent to previous Node
+        out.setParent(pos);
+        //Set heuristic functions
+        out.setg();
+        out.seth(finalPos);
+        out.setf();
+        //Add to neighbors list
+        n->insert(out);
+        return true;
+	}
+	//Return false if not added
+	return false;
+}
+
+bool Pathfinder::left(Node * pos, set<Node> *n) {
+    //Copy Node
+    Node out = *pos;
+    //Move down
+    Coord c = out.getPos();
+    int newx = c.getx() - 1;
+    c.setx(newx);
+    //Set new position
+    out.setPos(c);
+    //Check if in bounds and not already on the path and not a wall and not a bad Node
+	if ( c.getx() >= 0 &&
+         maze->at(c.getz()).at(c.gety()).at(c.getx()) &&
+         !inPath(c) && !badNode(out) ) {
+        //Set parent to previous Node
+        out.setParent(pos);
+        //Set heuristic functions
+        out.setg();
+        out.seth(finalPos);
+        out.setf();
+        //Add to neighbors list
+        n->insert(out);
+        return true;
+	}
+	//Return false if not added
+	return false;
+}
+
+bool Pathfinder::right(Node * pos, set<Node> *n) {
+    //Copy Node
+    Node out = *pos;
+    //Move down
+    Coord c = out.getPos();
+    int newx = c.getx() + 1;
+    c.setx(newx);
+    //Set new position
+    out.setPos(c);
+    //Check if in bounds and not already on the path and not a wall and not a bad Node
+	if ( c.getx() < GRID_SIZE &&
+         maze->at(c.getz()).at(c.gety()).at(c.getx()) &&
+         !inPath(c) && !badNode(out) ) {
+        //Set heuristic functions
+        out.setg();
+        out.seth(finalPos);
+        out.setf();
+        //Add to neighbors list
+        n->insert(out);
+        return true;
+	}
+	//Return false if not added
+	return false;
+}
+
+bool Pathfinder::inPath(Coord n) {
+    for (auto i : current_path) {
+        if (n == i.getPos()) {
             return true;
         }
-	}
-	return false;
+    }
+    return false;
 }
 
-bool Pathfinder::down(Node * pos) {
-	if (pos->getPos().getz() + 1 < num_grids && (*maze)[pos->getPos().getz() + 1][pos->getPos().gety()][pos->getPos().getx()] == 1) {
-		pos->getPos().incz();
-		return true;
-	}
-	return false;
+bool Pathfinder::badNode(Node n) {
+    if (find(bad_nodes.begin(), bad_nodes.end(), n) != bad_nodes.end()) {
+        return true;
+    }
+    return false;
 }
 
-bool Pathfinder::forward(Node * pos) {
-	if (pos->getPos().gety() - 1 >= 0 && (*maze)[pos->getPos().getz()][pos->getPos().gety() - 1][pos->getPos().getx()] == 1) {
-		pos->getPos().decy();
-		return true;
-	}
-	return false;
-}
-
-bool Pathfinder::backward(Node * pos) {
-	if (pos->getPos().gety() + 1 < grid_size && (*maze)[pos->getPos().getz()][pos->getPos().gety() + 1][pos->getPos().getx()] == 1) {
-		pos->getPos().incy();
-		return true;
-	}
-	return false;
-}
-
-bool Pathfinder::left(Node * pos) {
-	if (pos->getPos().getx() - 1 >= 0 && (*maze)[pos->getPos().getz()][pos->getPos().gety()][pos->getPos().getx() - 1] == 1) {
-		pos->getPos().decx();
-		return true;
-	}
-	return false;
-}
-
-bool Pathfinder::right(Node * pos) {
-	if (pos->getPos().getx() + 1 < 5 && (*maze)[pos->getPos().getz()][pos->getPos().gety()][pos->getPos().getx() + 1] == 1) {
-		pos->getPos().incx();
-		return true;
-	}
-	return false;
+void Pathfinder::clear() {
+    maze = new vector<vector<vector<bool>>> (NUM_GRIDS, vector<vector<bool>>(GRID_SIZE, vector<bool>(GRID_SIZE, 1)));
+    current_path.clear();
+    bad_nodes.clear();
+	Node start(startPos);
+    start.setg();
+    start.seth(finalPos);
+    start.setf();
+    current_path.push_front(start);
 }

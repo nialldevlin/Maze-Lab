@@ -2,14 +2,9 @@
 #include <string>
 #include <cmath>
 #include <sstream>
+#include <iostream>
 
 using namespace std;
-
-Coord::Coord() {
-	x = 0;
-	y = 0;
-	z = 0;
-}
 
 Coord::Coord(int xx, int yy, int zz) {
 	x = xx;
@@ -31,23 +26,14 @@ int Coord::getz() {
 
 void Coord::setx(int xx) {
 	x = xx;
-	if ( x < 0 ) {
-		x = 0;
-	}
 }
 
 void Coord::sety(int yy) {
 	y = yy;
-	if ( y < 0 ) {
-		y = 0;
-	}
 }
 
 void Coord::setz(int zz) {
 	z = zz;
-	if ( z < 0 ) {
-		z = 0;
-	}
 }
 
 void Coord::set(int xx, int yy, int zz) {
@@ -103,6 +89,12 @@ float Coord::getDist(Coord other) {
 	int ydiff = y - other.gety();
 	int zdiff = z - other.getz();
 	return sqrt(xdiff * xdiff + ydiff * ydiff + zdiff * zdiff);
+}
+
+bool Coord::inBounds(Coord start, Coord finish) {
+    return  x >= start.getx() && x <= finish.getx() &&
+            y >= start.gety() && y <= finish.gety() &&
+            z >= start.getz() && z <= finish.getz();
 }
 
 string Coord::str() {

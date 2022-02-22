@@ -5,12 +5,12 @@
 
 class Coord {
 private:
-	int x;
-	int y;
-	int z;
+	int x = 0;
+	int y = 0;
+	int z = 0;
 
 public:
-	Coord();
+	Coord(){}
 	Coord(int x, int y, int z);
 	~Coord(){};
 
@@ -33,6 +33,7 @@ public:
 	void incz();
 
 	float getDist(Coord other);
+	bool inBounds(Coord start, Coord finish);
 
 	std::string str();
 

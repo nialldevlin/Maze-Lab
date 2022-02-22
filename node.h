@@ -18,11 +18,11 @@ public:
 	~Node();
 
 	Node * getParent();
-	void setParent(Node parent);
+	void setParent(Node * parent);
 
-	int getg();
-	int geth();
-	int getf();
+	float getg();
+	float geth();
+	float getf();
 
 	void setg();
 	void seth(Coord finalpos);
@@ -33,7 +33,6 @@ public:
 
 	friend bool operator< (const Node& n1, const Node& n2);
 	friend bool operator== (const Node& n1, const Node& n2);
-	friend bool operator!= (const Node& n1, const Node& n2);
 };
 
 #endif
