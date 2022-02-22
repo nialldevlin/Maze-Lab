@@ -108,7 +108,6 @@ void Pathfinder::createRandomMaze() {
 }
 
 bool Pathfinder::importMaze(string file_name) {
-    clear();
 	ifstream ifs;
 	ifs.open(file_name);
 	cout << file_name << endl;
@@ -123,15 +122,32 @@ bool Pathfinder::importMaze(string file_name) {
 	int zeroes = 0;
 	while (ifs >> line) {
 		stringstream ss(line);
-		bool val;
-		while(ss >> val) {
-			vals.push_back(val);
+		string v;
+		while(ss >> v) {
+            bool val;
+            if (v == "0") {
+                val = 0;
+            } else if (v == "1") {
+                val = 1;
+            } else {
+                return false;
+            }
+            vals.push_back(val);
 			if (val)
 				zeroes++;
 			else
 				ones++;
+
 		}
 	}
+	if (vals.size() != NUM_GRIDS * GRID_SIZE * GRID_SIZE) {
+		return false;
+	}
+	cout << abs(zeroes - ones) << endl;
+	if (abs(zeroes - ones) > 100) {
+        return false;
+	}
+	clear();
 	int index = 0;
 	for (int i = 0; i < (*maze).size(); i++) {
 		for (int j = 0; j < (*maze)[0].size(); j++) {
@@ -140,9 +156,6 @@ bool Pathfinder::importMaze(string file_name) {
 				index++;
 			}
 		}
-	}
-    if (vals.size() < NUM_GRIDS * GRID_SIZE * GRID_SIZE) {
-		return false;
 	}
 	return true;
 }
@@ -371,6 +384,7 @@ bool Pathfinder::badNode(Node n) {
 }
 
 void Pathfinder::clear() {
+    delete maze;
     maze = new vector<vector<vector<bool>>> (NUM_GRIDS, vector<vector<bool>>(GRID_SIZE, vector<bool>(GRID_SIZE, 1)));
     current_path.clear();
     bad_nodes.clear();
